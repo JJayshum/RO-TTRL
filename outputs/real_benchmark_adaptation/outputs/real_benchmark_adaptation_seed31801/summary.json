@@ -1,0 +1,164 @@
+{
+  "model": "/root/autodl-tmp/modelscope-cache/models/Qwen--Qwen2.5-3B-Instruct/snapshots/master",
+  "train_orbits": 18,
+  "eval_orbits": 96,
+  "mapped_rollouts": {
+    "orbits": 18,
+    "sequences": 576,
+    "parse_failure_rate": 0.03125,
+    "advantage_std": 0.10325176096272398
+  },
+  "root_rollouts": {
+    "orbits": 18,
+    "sequences": 576,
+    "parse_failure_rate": 0.041666666666666664,
+    "advantage_std": 0.1609358248511112
+  },
+  "mapped_train": {
+    "steps": 576,
+    "mean_loss": -1.5136535068463595,
+    "mean_pg_loss": -1.5136580787495606,
+    "mean_kl": 0.00023048515990748482
+  },
+  "root_train": {
+    "steps": 576,
+    "mean_loss": -1.4119758974941934,
+    "mean_pg_loss": -1.4119787990219064,
+    "mean_kl": 0.0001519734829650411
+  },
+  "evaluation": {
+    "base": {
+      "policy_pass1": 0.5520833333333334,
+      "root_majority": 0.5625,
+      "mapped": 0.6458333333333334,
+      "truth_support": 0.9791666666666666,
+      "parse_failure": 0.024739583333333332
+    },
+    "root_ttrl": {
+      "policy_pass1": 0.5546875,
+      "root_majority": 0.5833333333333334,
+      "mapped": 0.71875,
+      "truth_support": 0.9895833333333334,
+      "parse_failure": 0.016927083333333332
+    },
+    "mapped_ttrl": {
+      "policy_pass1": 0.5755208333333334,
+      "root_majority": 0.625,
+      "mapped": 0.6770833333333334,
+      "truth_support": 1.0,
+      "parse_failure": 0.013020833333333334
+    }
+  },
+  "mapped_minus_base": {
+    "effect": 0.0234375,
+    "paired_95ci": [
+      -0.020833333333333332,
+      0.0703125
+    ]
+  },
+  "mapped_minus_root_ttrl": {
+    "effect": 0.02083333333333337,
+    "paired_95ci": [
+      -0.010416666666666666,
+      0.052083333333333336
+    ]
+  },
+  "per_benchmark": {
+    "arc_challenge": {
+      "evaluation": {
+        "base": {
+          "policy_pass1": 0.640625,
+          "root_majority": 0.78125,
+          "mapped": 0.71875,
+          "truth_support": 1.0,
+          "parse_failure": 0.013671875
+        },
+        "root_ttrl": {
+          "policy_pass1": 0.625,
+          "root_majority": 0.6875,
+          "mapped": 0.78125,
+          "truth_support": 1.0,
+          "parse_failure": 0.0078125
+        },
+        "mapped_ttrl": {
+          "policy_pass1": 0.6171875,
+          "root_majority": 0.71875,
+          "mapped": 0.75,
+          "truth_support": 1.0,
+          "parse_failure": 0.0078125
+        }
+      },
+      "mapped_minus_root_ttrl": {
+        "effect": -0.0078125,
+        "paired_95ci": [
+          -0.0703125,
+          0.046875
+        ]
+      }
+    },
+    "openbookqa": {
+      "evaluation": {
+        "base": {
+          "policy_pass1": 0.5859375,
+          "root_majority": 0.59375,
+          "mapped": 0.6875,
+          "truth_support": 0.9375,
+          "parse_failure": 0.017578125
+        },
+        "root_ttrl": {
+          "policy_pass1": 0.640625,
+          "root_majority": 0.6875,
+          "mapped": 0.8125,
+          "truth_support": 0.96875,
+          "parse_failure": 0.013671875
+        },
+        "mapped_ttrl": {
+          "policy_pass1": 0.6796875,
+          "root_majority": 0.65625,
+          "mapped": 0.8125,
+          "truth_support": 1.0,
+          "parse_failure": 0.009765625
+        }
+      },
+      "mapped_minus_root_ttrl": {
+        "effect": 0.0390625,
+        "paired_95ci": [
+          -0.0078125,
+          0.078125
+        ]
+      }
+    },
+    "mmlu": {
+      "evaluation": {
+        "base": {
+          "policy_pass1": 0.4296875,
+          "root_majority": 0.3125,
+          "mapped": 0.53125,
+          "truth_support": 1.0,
+          "parse_failure": 0.04296875
+        },
+        "root_ttrl": {
+          "policy_pass1": 0.3984375,
+          "root_majority": 0.375,
+          "mapped": 0.5625,
+          "truth_support": 1.0,
+          "parse_failure": 0.029296875
+        },
+        "mapped_ttrl": {
+          "policy_pass1": 0.4296875,
+          "root_majority": 0.5,
+          "mapped": 0.46875,
+          "truth_support": 1.0,
+          "parse_failure": 0.021484375
+        }
+      },
+      "mapped_minus_root_ttrl": {
+        "effect": 0.03125,
+        "paired_95ci": [
+          -0.0234375,
+          0.0859375
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "model": "/root/autodl-tmp/modelscope-cache/models/Qwen--Qwen2.5-3B-Instruct/snapshots/master",
+  "benchmark": "mmlu",
+  "orbits": 64,
+  "views": 4,
+  "samples_per_view": 4,
+  "root_accuracy": 0.390625,
+  "unmapped_accuracy": 0.265625,
+  "mapped_accuracy": 0.53125,
+  "mapped_minus_root": 0.140625,
+  "mapped_minus_root_95ci": [
+    0.015625,
+    0.265625
+  ],
+  "randomized_gauge_accuracy": 0.3421875,
+  "correct_map_minus_randomized": 0.18906250000000002,
+  "correct_map_minus_randomized_95ci": [
+    0.08281250000000001,
+    0.2984375
+  ],
+  "truth_support": 1.0,
+  "canonical_rollout_accuracy": 0.3984375,
+  "parse_failure": 0.0595703125,
+  "mapped_completion_tokens": 176120,
+  "root_completion_tokens": 177074,
+  "dataset": {
+    "path": "cais/mmlu",
+    "config": "all",
+    "split": "test",
+    "fingerprint": "11e3630eecd900a6",
+    "source_rows": 14042,
+    "eligible_four_option_rows": 14042,
+    "transport": {
+      "kind": "modelscope_mirror_parquet",
+      "local_file": "/root/autodl-tmp/benchmark-data/mmlu/all/test-00000-of-00001.parquet",
+      "file_sha256": "74a41822ce7d3def56e1682f958469c04642a5336a5ce912fa375fdb90fb25d7"
+    }
+  }
+}

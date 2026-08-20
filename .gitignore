@@ -1,0 +1,42 @@
+# Operating-system and editor files
+.DS_Store
+*.swp
+*.swo
+
+# Python caches and local environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+*.egg-info/
+
+# Model weights and parameter-efficient adapters
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+
+# Downloaded/packed experiment archives
+*.tgz
+*.tar.gz
+*.zip
+
+# LaTeX intermediate build products
+paper/build/
+*.aux
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.log
+*.out
+*.synctex.gz
+
+# Local dataset/model caches if added later
+.cache/
+models/
+datasets/

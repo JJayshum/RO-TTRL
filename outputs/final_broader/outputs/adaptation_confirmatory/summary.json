@@ -1,0 +1,65 @@
+{
+  "model": "/root/autodl-tmp/modelscope-cache/models/Qwen--Qwen2.5-3B-Instruct/snapshots/master",
+  "difficulty": "easy",
+  "train_orbits": 16,
+  "eval_orbits": 48,
+  "mapped_rollouts": {
+    "orbits": 16,
+    "sequences": 512,
+    "parse_failure_rate": 0.052734375,
+    "advantage_std": 0.06294792503015649
+  },
+  "root_rollouts": {
+    "orbits": 16,
+    "sequences": 512,
+    "parse_failure_rate": 0.03125,
+    "advantage_std": 0.15272289793203403
+  },
+  "mapped_train": {
+    "steps": 512,
+    "mean_loss": -0.12155563006338127,
+    "mean_pg_loss": -0.1217716456449125,
+    "mean_kl": 0.010800774826906112
+  },
+  "root_train": {
+    "steps": 512,
+    "mean_loss": -0.3032965921010612,
+    "mean_pg_loss": -0.30340220624930225,
+    "mean_kl": 0.005280419865740682
+  },
+  "evaluation": {
+    "base": {
+      "policy_pass1": 0.5729166666666666,
+      "root_majority": 0.5625,
+      "mapped": 0.8541666666666666,
+      "truth_support": 0.9791666666666666,
+      "parse_failure": 0.015625
+    },
+    "root_ttrl": {
+      "policy_pass1": 0.6302083333333334,
+      "root_majority": 0.6666666666666666,
+      "mapped": 0.8333333333333334,
+      "truth_support": 0.9791666666666666,
+      "parse_failure": 0.0026041666666666665
+    },
+    "mapped_ttrl": {
+      "policy_pass1": 0.6666666666666666,
+      "root_majority": 0.6875,
+      "mapped": 0.875,
+      "truth_support": 0.9791666666666666,
+      "parse_failure": 0.00390625
+    }
+  },
+  "policy_effects": {
+    "mapped_minus_base": 0.09375,
+    "mapped_minus_base_95ci": [
+      0.020833333333333332,
+      0.17708333333333334
+    ],
+    "mapped_minus_root_ttrl": 0.03645833333333326,
+    "mapped_minus_root_ttrl_95ci": [
+      -0.010416666666666666,
+      0.08854166666666667
+    ]
+  }
+}

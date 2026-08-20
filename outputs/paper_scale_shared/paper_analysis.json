@@ -1,0 +1,99 @@
+{
+  "design": {
+    "independent_unit": "question block",
+    "bootstrap": "paired question resampling stratified by benchmark; models fixed",
+    "replicates": 10000,
+    "seed": 20260817,
+    "multiplicity": "two co-primary criteria are conjunctive; per-model intervals are descriptive"
+  },
+  "by_model": {
+    "llama3b": {
+      "questions": 192,
+      "root_accuracy": 0.75,
+      "mapped_accuracy": 0.7447916666666666,
+      "mapped_minus_root": -0.005208333333333333,
+      "correct_map_minus_randomized": 0.3216145833333333,
+      "truth_support": 0.9583333333333334,
+      "parse_failure": 0.009440104166666666,
+      "repairs": 11,
+      "corruptions": 12,
+      "mapped_minus_root_95ci": [
+        -0.052083333333333336,
+        0.041666666666666664
+      ],
+      "correct_map_minus_randomized_95ci": [
+        0.2492122395833333,
+        0.39531249999999996
+      ]
+    },
+    "qwen3b": {
+      "questions": 192,
+      "root_accuracy": 0.6197916666666666,
+      "mapped_accuracy": 0.6927083333333334,
+      "mapped_minus_root": 0.07291666666666667,
+      "correct_map_minus_randomized": 0.31640625,
+      "truth_support": 0.9947916666666666,
+      "parse_failure": 0.020833333333333332,
+      "repairs": 31,
+      "corruptions": 17,
+      "mapped_minus_root_95ci": [
+        0.005208333333333333,
+        0.140625
+      ],
+      "correct_map_minus_randomized_95ci": [
+        0.24791666666666667,
+        0.3851627604166666
+      ]
+    },
+    "qwen7b": {
+      "questions": 192,
+      "root_accuracy": 0.8229166666666666,
+      "mapped_accuracy": 0.8489583333333334,
+      "mapped_minus_root": 0.026041666666666668,
+      "correct_map_minus_randomized": 0.4020833333333333,
+      "truth_support": 0.9635416666666666,
+      "parse_failure": 0.0126953125,
+      "repairs": 9,
+      "corruptions": 4,
+      "mapped_minus_root_95ci": [
+        -0.010416666666666666,
+        0.0625
+      ],
+      "correct_map_minus_randomized_95ci": [
+        0.32109375,
+        0.48307942708333323
+      ]
+    }
+  },
+  "overall": {
+    "independent_question_blocks": 192,
+    "fixed_models": [
+      "llama3b",
+      "qwen3b",
+      "qwen7b"
+    ],
+    "model_question_observations": 576,
+    "fixed_model_average_mapped_minus_root": 0.03125000000000001,
+    "fixed_model_average_mapped_minus_root_95ci": [
+      0.0017361111111111108,
+      0.05902777777777778
+    ],
+    "fixed_model_average_correct_map_minus_randomized": 0.34670138888888885,
+    "fixed_model_average_correct_map_minus_randomized_95ci": [
+      0.2837673611111111,
+      0.40972439236111113
+    ]
+  },
+  "paper_gate": {
+    "passed": true,
+    "criteria": {
+      "fixed_model_effect_ci_excludes_zero": true,
+      "two_of_three_model_effects_nonnegative": true,
+      "no_model_interval_wholly_below_zero": true,
+      "map_control_at_least_0.05": true,
+      "map_control_ci_excludes_zero": true,
+      "truth_support_at_least_0.80_each": true,
+      "parse_failure_at_most_0.10_each": true
+    }
+  }
+}

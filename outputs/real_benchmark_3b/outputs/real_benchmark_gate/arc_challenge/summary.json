@@ -1,0 +1,39 @@
+{
+  "model": "/root/autodl-tmp/modelscope-cache/models/Qwen--Qwen2.5-3B-Instruct/snapshots/master",
+  "benchmark": "arc_challenge",
+  "orbits": 64,
+  "views": 4,
+  "samples_per_view": 4,
+  "root_accuracy": 0.46875,
+  "unmapped_accuracy": 0.15625,
+  "mapped_accuracy": 0.75,
+  "mapped_minus_root": 0.28125,
+  "mapped_minus_root_95ci": [
+    0.15625,
+    0.40625
+  ],
+  "randomized_gauge_accuracy": 0.31796875,
+  "correct_map_minus_randomized": 0.43203125,
+  "correct_map_minus_randomized_95ci": [
+    0.31015625,
+    0.5515625
+  ],
+  "truth_support": 1.0,
+  "canonical_rollout_accuracy": 0.482421875,
+  "parse_failure": 0.0068359375,
+  "mapped_completion_tokens": 176894,
+  "root_completion_tokens": 176931,
+  "dataset": {
+    "path": "allenai/ai2_arc",
+    "config": "ARC-Challenge",
+    "split": "validation",
+    "fingerprint": "21330223521902f7",
+    "source_rows": 299,
+    "eligible_four_option_rows": 295,
+    "transport": {
+      "kind": "modelscope_mirror_parquet",
+      "local_file": "/root/autodl-tmp/benchmark-data/ai2_arc/ARC-Challenge/validation-00000-of-00001.parquet",
+      "file_sha256": "395a5c88d1580d69855fbaee9450270578df1ad5af6259771cd0a42c20e99f05"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+34448b82c17d60fec9b65b1f093c115ddbaadc04beb1b0140b6bfed2e012a930  /root/autodl-tmp/cross-family-models/gemma2b/.gitattributes
+bb52a3f239a1e7b24907644c29e51ff3159fcff5488333d75b1056ddfdd74950  /root/autodl-tmp/cross-family-models/gemma2b/README.md
+eacec6c5ca317a87ed2c46789d9705b9274db5027e7ba59da739bfae23addb55  /root/autodl-tmp/cross-family-models/gemma2b/config.json
+f888421726665e8a84b738eed42a64875aed79de8be7daade851ac8bf4c0cef9  /root/autodl-tmp/cross-family-models/gemma2b/configuration.json
+a543a5d299bc2b20c52bd87ed174f561266510b57a392e12b5b5d758d798ce05  /root/autodl-tmp/cross-family-models/gemma2b/generation_config.json
+532d792c9178805064170a3ec485b7dedbfccc6fd297b92c31a6091b6c7e41bf  /root/autodl-tmp/cross-family-models/gemma2b/model-00001-of-00002.safetensors
+6d6d9ce84db398fb6e0191f91542e5da0a73da2cb695e172a24edc2146dc8d20  /root/autodl-tmp/cross-family-models/gemma2b/model-00002-of-00002.safetensors
+ada0043f3e3b2e5ab2f445cad9c0fbbf9d91ad444675e6a82b822591c63abf5a  /root/autodl-tmp/cross-family-models/gemma2b/model.safetensors.index.json
+baec30ea10906f16adb8c18af7a34023002c1746542612b8b41c9f09e1351351  /root/autodl-tmp/cross-family-models/gemma2b/special_tokens_map.json
+3f289bc05132635a8bc7aca7aa21255efd5e18f3710f43e3cdb96bcd41be4922  /root/autodl-tmp/cross-family-models/gemma2b/tokenizer.json
+61a7b147390c64585d6c3543dd6fc636906c9af3865a5548f27f31aee1d4c8e2  /root/autodl-tmp/cross-family-models/gemma2b/tokenizer.model
+cb32b7929c62608d46572e813112b3ad8a841fb98fdd6a4da8559e368a951c89  /root/autodl-tmp/cross-family-models/gemma2b/tokenizer_config.json

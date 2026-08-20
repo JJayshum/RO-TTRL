@@ -1,0 +1,6 @@
+2026-08-16T22:58:46+08:00
+NVIDIA GeForce RTX 3090, 570.124.04, 24576 MiB
+python 3.12.3
+torch 2.5.1+cu124
+transformers 4.57.6
+datasets 4.8.5

@@ -1,0 +1,41 @@
+{
+  "model": "/root/autodl-tmp/cross-family-models/gemma2b",
+  "benchmark": "openbookqa",
+  "orbits": 64,
+  "views": 4,
+  "samples_per_view": 4,
+  "root_accuracy": 0.734375,
+  "unmapped_accuracy": 0.265625,
+  "mapped_accuracy": 0.796875,
+  "mapped_minus_root": 0.0625,
+  "mapped_minus_root_95ci": [
+    0.015625,
+    0.125
+  ],
+  "randomized_gauge_accuracy": 0.43046875,
+  "correct_map_minus_randomized": 0.36640625,
+  "correct_map_minus_randomized_95ci": [
+    0.26326171875000004,
+    0.46796875
+  ],
+  "truth_support": 0.9375,
+  "canonical_rollout_accuracy": 0.7119140625,
+  "parse_failure": 0.0,
+  "mapped_completion_tokens": 47991,
+  "root_completion_tokens": 49258,
+  "dataset": {
+    "path": "allenai/openbookqa",
+    "config": "main",
+    "split": "validation",
+    "fingerprint": "a2f742e2a87392eb",
+    "source_rows": 500,
+    "eligible_four_option_rows": 500,
+    "excluded_prior_rows": 230,
+    "available_after_exclusion": 270,
+    "transport": {
+      "kind": "modelscope_mirror_parquet",
+      "local_file": "/root/autodl-tmp/benchmark-data/openbookqa/main/validation-00000-of-00001.parquet",
+      "file_sha256": "35370b9cfee8c1ff325ccc74adc434d12c47ca0ac3244aa87f3fa77069285206"
+    }
+  }
+}

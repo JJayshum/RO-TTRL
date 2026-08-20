@@ -1,0 +1,26 @@
+{
+  "model": "/root/autodl-tmp/modelscope-cache/models/Qwen--Qwen2.5-3B-Instruct/snapshots/master",
+  "orbits": 64,
+  "views": 4,
+  "difficulty": "medium",
+  "samples_per_view": 4,
+  "root_accuracy": 0.3125,
+  "unmapped_transformed_accuracy": 0.3125,
+  "mapped_accuracy": 0.4375,
+  "mapped_minus_root": 0.125,
+  "paired_bootstrap_95ci": [
+    -0.03125,
+    0.28125
+  ],
+  "randomized_gauge_accuracy": 0.31484375,
+  "correct_map_minus_randomized": 0.12265625000000002,
+  "correct_map_minus_randomized_95ci": [
+    -0.013281250000000022,
+    0.25703125
+  ],
+  "truth_support_coverage": 0.953125,
+  "canonical_rollout_accuracy": 0.30859375,
+  "mean_parse_failure_rate": 0.0185546875,
+  "mapped_completion_tokens": 107295,
+  "root_completion_tokens": 106522
+}

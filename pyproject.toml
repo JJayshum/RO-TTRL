@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "relational-orbit-ttrl"
+version = "0.1.0"
+description = "CPU-first pilot for Relational-Orbit test-time reinforcement learning"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.24"]
+
+[project.scripts]
+ro-pilot = "relational_orbit_ttrl.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

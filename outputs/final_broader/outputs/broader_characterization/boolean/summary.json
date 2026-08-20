@@ -1,0 +1,19 @@
+{
+  "family": "boolean",
+  "difficulty": "easy",
+  "orbits": 32,
+  "root_accuracy": 0.3125,
+  "mapped_accuracy": 0.375,
+  "mapped_minus_root": 0.0625,
+  "mapped_minus_root_95ci": [
+    -0.0625,
+    0.1875
+  ],
+  "unmapped_accuracy": 0.3125,
+  "randomized_gauge_accuracy": 0.384375,
+  "correct_map_minus_randomized": -0.009375000000000022,
+  "truth_support": 0.96875,
+  "parse_failure": 0.001953125,
+  "mapped_tokens": 2517,
+  "root_tokens": 2048
+}

@@ -1,0 +1,39 @@
+{
+  "eval_orbits": 128,
+  "eval_seed": 1701,
+  "evaluation": {
+    "base": {
+      "policy_pass1": 0.638671875,
+      "root_majority": 0.6484375,
+      "mapped": 0.8515625,
+      "truth_support": 0.96875,
+      "parse_failure": 0.02099609375
+    },
+    "root_ttrl": {
+      "policy_pass1": 0.662109375,
+      "root_majority": 0.6796875,
+      "mapped": 0.8359375,
+      "truth_support": 0.9609375,
+      "parse_failure": 0.00732421875
+    },
+    "mapped_ttrl": {
+      "policy_pass1": 0.708984375,
+      "root_majority": 0.7265625,
+      "mapped": 0.8359375,
+      "truth_support": 0.96875,
+      "parse_failure": 0.00927734375
+    }
+  },
+  "policy_effects": {
+    "mapped_minus_base": 0.0703125,
+    "mapped_minus_base_95ci": [
+      0.02734375,
+      0.115234375
+    ],
+    "mapped_minus_root_ttrl": 0.046875,
+    "mapped_minus_root_ttrl_95ci": [
+      0.01953125,
+      0.076171875
+    ]
+  }
+}

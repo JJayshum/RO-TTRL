@@ -1,0 +1,39 @@
+{
+  "model": "/root/autodl-tmp/modelscope-cache/models/Llama--Llama-3.2-3B-Instruct/snapshots/master",
+  "benchmark": "mmlu",
+  "orbits": 64,
+  "views": 4,
+  "samples_per_view": 4,
+  "root_accuracy": 0.671875,
+  "unmapped_accuracy": 0.234375,
+  "mapped_accuracy": 0.703125,
+  "mapped_minus_root": 0.03125,
+  "mapped_minus_root_95ci": [
+    -0.046875,
+    0.109375
+  ],
+  "randomized_gauge_accuracy": 0.41953125,
+  "correct_map_minus_randomized": 0.28359375,
+  "correct_map_minus_randomized_95ci": [
+    0.17419921875,
+    0.39375
+  ],
+  "truth_support": 0.96875,
+  "canonical_rollout_accuracy": 0.599609375,
+  "parse_failure": 0.0283203125,
+  "mapped_completion_tokens": 94293,
+  "root_completion_tokens": 97601,
+  "dataset": {
+    "path": "cais/mmlu",
+    "config": "all",
+    "split": "test",
+    "fingerprint": "11e3630eecd900a6",
+    "source_rows": 14042,
+    "eligible_four_option_rows": 14042,
+    "transport": {
+      "kind": "modelscope_mirror_parquet",
+      "local_file": "/root/autodl-tmp/benchmark-data/mmlu/all/test-00000-of-00001.parquet",
+      "file_sha256": "74a41822ce7d3def56e1682f958469c04642a5336a5ce912fa375fdb90fb25d7"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "model": "/root/autodl-tmp/cross-family-models/mistral7b",
+  "benchmark": "mmlu",
+  "orbits": 64,
+  "views": 4,
+  "samples_per_view": 4,
+  "root_accuracy": 0.546875,
+  "unmapped_accuracy": 0.21875,
+  "mapped_accuracy": 0.609375,
+  "mapped_minus_root": 0.0625,
+  "mapped_minus_root_95ci": [
+    -0.015625,
+    0.15625
+  ],
+  "randomized_gauge_accuracy": 0.36953125,
+  "correct_map_minus_randomized": 0.23984375000000002,
+  "correct_map_minus_randomized_95ci": [
+    0.13124999999999998,
+    0.3570507812499997
+  ],
+  "truth_support": 0.984375,
+  "canonical_rollout_accuracy": 0.5712890625,
+  "parse_failure": 0.025390625,
+  "mapped_completion_tokens": 130275,
+  "root_completion_tokens": 130978,
+  "dataset": {
+    "path": "cais/mmlu",
+    "config": "all",
+    "split": "test",
+    "fingerprint": "11e3630eecd900a6",
+    "source_rows": 14042,
+    "eligible_four_option_rows": 14042,
+    "excluded_prior_rows": 230,
+    "available_after_exclusion": 13812,
+    "transport": {
+      "kind": "modelscope_mirror_parquet",
+      "local_file": "/root/autodl-tmp/benchmark-data/mmlu/all/test-00000-of-00001.parquet",
+      "file_sha256": "74a41822ce7d3def56e1682f958469c04642a5336a5ce912fa375fdb90fb25d7"
+    }
+  }
+}

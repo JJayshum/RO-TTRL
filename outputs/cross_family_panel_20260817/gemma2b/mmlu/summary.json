@@ -1,0 +1,41 @@
+{
+  "model": "/root/autodl-tmp/cross-family-models/gemma2b",
+  "benchmark": "mmlu",
+  "orbits": 64,
+  "views": 4,
+  "samples_per_view": 4,
+  "root_accuracy": 0.71875,
+  "unmapped_accuracy": 0.296875,
+  "mapped_accuracy": 0.6875,
+  "mapped_minus_root": -0.03125,
+  "mapped_minus_root_95ci": [
+    -0.125,
+    0.046875
+  ],
+  "randomized_gauge_accuracy": 0.4015625,
+  "correct_map_minus_randomized": 0.2859375,
+  "correct_map_minus_randomized_95ci": [
+    0.18671875,
+    0.3859375
+  ],
+  "truth_support": 0.96875,
+  "canonical_rollout_accuracy": 0.57421875,
+  "parse_failure": 0.0146484375,
+  "mapped_completion_tokens": 110277,
+  "root_completion_tokens": 112952,
+  "dataset": {
+    "path": "cais/mmlu",
+    "config": "all",
+    "split": "test",
+    "fingerprint": "11e3630eecd900a6",
+    "source_rows": 14042,
+    "eligible_four_option_rows": 14042,
+    "excluded_prior_rows": 230,
+    "available_after_exclusion": 13812,
+    "transport": {
+      "kind": "modelscope_mirror_parquet",
+      "local_file": "/root/autodl-tmp/benchmark-data/mmlu/all/test-00000-of-00001.parquet",
+      "file_sha256": "74a41822ce7d3def56e1682f958469c04642a5336a5ce912fa375fdb90fb25d7"
+    }
+  }
+}
