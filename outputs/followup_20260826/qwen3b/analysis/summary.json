@@ -1,0 +1,157 @@
+{
+  "records": 128,
+  "compute_scaling": [
+    {
+      "budget": 4,
+      "root_accuracy": 0.6171875,
+      "log_pool_accuracy": 0.640625,
+      "log_pool_minus_root": 0.0234375,
+      "log_pool_minus_root_95ci": [
+        -0.078125,
+        0.125
+      ],
+      "hard_vote_accuracy": 0.640625,
+      "log_pool_minus_hard_vote": 0.0,
+      "log_pool_minus_hard_vote_95ci": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "budget": 8,
+      "root_accuracy": 0.6015625,
+      "log_pool_accuracy": 0.6796875,
+      "log_pool_minus_root": 0.078125,
+      "log_pool_minus_root_95ci": [
+        -0.0078125,
+        0.1640625
+      ],
+      "hard_vote_accuracy": 0.6875,
+      "log_pool_minus_hard_vote": -0.0078125,
+      "log_pool_minus_hard_vote_95ci": [
+        -0.0234375,
+        0.0
+      ]
+    },
+    {
+      "budget": 16,
+      "root_accuracy": 0.6484375,
+      "log_pool_accuracy": 0.703125,
+      "log_pool_minus_root": 0.0546875,
+      "log_pool_minus_root_95ci": [
+        -0.03125,
+        0.140625
+      ],
+      "hard_vote_accuracy": 0.7265625,
+      "log_pool_minus_hard_vote": -0.0234375,
+      "log_pool_minus_hard_vote_95ci": [
+        -0.0625,
+        0.0078125
+      ]
+    }
+  ],
+  "reliability": {
+    "mean_leave_one_view_out_agreement": 0.8359375,
+    "all_views_stable_fraction": 0.59375,
+    "risk_coverage": [
+      {
+        "target_coverage": 0.25,
+        "retained": 32,
+        "realized_coverage": 0.25,
+        "accuracy": 0.9375,
+        "risk": 0.0625
+      },
+      {
+        "target_coverage": 0.5,
+        "retained": 64,
+        "realized_coverage": 0.5,
+        "accuracy": 0.90625,
+        "risk": 0.09375
+      },
+      {
+        "target_coverage": 0.75,
+        "retained": 96,
+        "realized_coverage": 0.75,
+        "accuracy": 0.8125,
+        "risk": 0.1875
+      },
+      {
+        "target_coverage": 1.0,
+        "retained": 128,
+        "realized_coverage": 1.0,
+        "accuracy": 0.703125,
+        "risk": 0.296875
+      }
+    ]
+  },
+  "confirmation": {
+    "by_benchmark": {
+      "arc_challenge": {
+        "questions": 64,
+        "root_accuracy": 0.59375,
+        "mapped_accuracy": 0.671875,
+        "mapped_minus_root": 0.078125,
+        "mapped_minus_root_95ci": [
+          -0.0625,
+          0.21875
+        ],
+        "randomized_gauge_accuracy": 0.3375,
+        "correct_map_minus_randomized": 0.334375,
+        "correct_map_minus_randomized_95ci": [
+          0.215625,
+          0.453125
+        ],
+        "truth_support": 1.0,
+        "parse_failure": 0.02734375
+      },
+      "openbookqa": {
+        "questions": 64,
+        "root_accuracy": 0.703125,
+        "mapped_accuracy": 0.734375,
+        "mapped_minus_root": 0.03125,
+        "mapped_minus_root_95ci": [
+          -0.0625,
+          0.140625
+        ],
+        "randomized_gauge_accuracy": 0.4203125,
+        "correct_map_minus_randomized": 0.3140625,
+        "correct_map_minus_randomized_95ci": [
+          0.19373046875,
+          0.43046875
+        ],
+        "truth_support": 0.96875,
+        "parse_failure": 0.00390625
+      }
+    },
+    "pooled": {
+      "questions": 128,
+      "root_accuracy": 0.6484375,
+      "mapped_accuracy": 0.703125,
+      "mapped_minus_root": 0.0546875,
+      "mapped_minus_root_95ci": [
+        -0.03125,
+        0.140625
+      ],
+      "randomized_gauge_accuracy": 0.37890625,
+      "correct_map_minus_randomized": 0.32421875,
+      "correct_map_minus_randomized_95ci": [
+        0.236328125,
+        0.40860351562499986
+      ],
+      "truth_support": 0.984375,
+      "parse_failure": 0.015625
+    },
+    "gate": {
+      "passed": false,
+      "criteria": {
+        "pooled_effect_at_least_0.03": true,
+        "pooled_effect_ci_excludes_zero": false,
+        "two_of_three_dataset_effects_nonnegative": true,
+        "map_control_at_least_0.05": true,
+        "map_control_ci_excludes_zero": true,
+        "truth_support_at_least_0.80": true,
+        "parse_failure_at_most_0.10": true
+      }
+    }
+  }
+}
