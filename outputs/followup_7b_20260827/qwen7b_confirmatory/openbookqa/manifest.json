@@ -1,0 +1,357 @@
+{
+  "benchmark": "openbookqa",
+  "sample_seed": 20260827,
+  "sample_offset": 0,
+  "generation_seed": 82909,
+  "dataset": {
+    "path": "allenai/openbookqa",
+    "config": "main",
+    "split": "validation",
+    "fingerprint": "a2f742e2a87392eb",
+    "source_rows": 500,
+    "eligible_four_option_rows": 500,
+    "excluded_prior_rows": 128,
+    "available_after_exclusion": 372,
+    "transport": {
+      "kind": "modelscope_mirror_parquet",
+      "local_file": "/root/autodl-tmp/benchmark-data/openbookqa/main/validation-00000-of-00001.parquet",
+      "file_sha256": "35370b9cfee8c1ff325ccc74adc434d12c47ca0ac3244aa87f3fa77069285206"
+    }
+  },
+  "configuration": {
+    "model": "/root/autodl-tmp/modelscope-cache/models/Qwen--Qwen2.5-7B-Instruct/snapshots/master",
+    "views": 4,
+    "samples_per_view": 4,
+    "max_new_tokens": 192,
+    "temperature": 0.8,
+    "top_p": 0.95,
+    "alpha": 1.0,
+    "gauge_seeds": 20
+  },
+  "exclusion_manifests": [
+    "outputs/real_benchmark_7b_confirmation/openbookqa/manifest.json",
+    "outputs/paper_scale_shared/qwen7b/openbookqa/manifest.json"
+  ],
+  "items": [
+    {
+      "id": "openbookqa:229",
+      "source_index": 229,
+      "content_sha256": "1547ab69f599f0d3ebe7d7e0db16570b4a12e5be2aeb5efecfce06841cf2f29a"
+    },
+    {
+      "id": "openbookqa:51",
+      "source_index": 51,
+      "content_sha256": "e6b55f6c57a26cf53c244997fe0f0a965d469863c6ffd755fca9234a25769023"
+    },
+    {
+      "id": "openbookqa:0",
+      "source_index": 0,
+      "content_sha256": "cefd198f452e8077c42e1d2f110d4266addc9ab86c65d0df4ac85fe7a841bf8e"
+    },
+    {
+      "id": "openbookqa:358",
+      "source_index": 358,
+      "content_sha256": "227ec69b511c04c0c1df32cdde6358bbcb90359dd6957fe717ad627047fb90fc"
+    },
+    {
+      "id": "openbookqa:62",
+      "source_index": 62,
+      "content_sha256": "56da4130c0c7ce9f0b571d100c76671ce6ee4ffc539ca04786e829f430156739"
+    },
+    {
+      "id": "openbookqa:20",
+      "source_index": 20,
+      "content_sha256": "f74b0e24e440a611f02334785eb44a0b205aca94cd33755da04330c727652ebf"
+    },
+    {
+      "id": "openbookqa:459",
+      "source_index": 459,
+      "content_sha256": "380cd9edda7e82b8a231a6c3c3b91329345642a119a26847c64996e1f52cc987"
+    },
+    {
+      "id": "openbookqa:215",
+      "source_index": 215,
+      "content_sha256": "d0b94031eeb457cf878d5ef0169e7f48c8c488aff21dd02f081679add473cd34"
+    },
+    {
+      "id": "openbookqa:54",
+      "source_index": 54,
+      "content_sha256": "f897304ab401640255b1346f9c3f06a308e8da48af10b1f6fbcd5ef615ed2984"
+    },
+    {
+      "id": "openbookqa:458",
+      "source_index": 458,
+      "content_sha256": "83ccf9f2d11b5c29ba7ccae3a895919cb749e9cff5574e91d424b19460a66929"
+    },
+    {
+      "id": "openbookqa:252",
+      "source_index": 252,
+      "content_sha256": "aee674a6920876d1cfbbf777bc803044fa6452586d9fbf19f975b973e727095c"
+    },
+    {
+      "id": "openbookqa:488",
+      "source_index": 488,
+      "content_sha256": "dc4c13d38df5a1ce4e3c11e5986239867b2fe9f322672e048be0947954572318"
+    },
+    {
+      "id": "openbookqa:214",
+      "source_index": 214,
+      "content_sha256": "d798a8df4a684071701bcda466d353ae8e57342d37e4b16084a33dba7be8d5d4"
+    },
+    {
+      "id": "openbookqa:17",
+      "source_index": 17,
+      "content_sha256": "b609f0b10984e134dd127b2094fe34a49f87502a2ea688cf7cd74aaf20103f32"
+    },
+    {
+      "id": "openbookqa:211",
+      "source_index": 211,
+      "content_sha256": "80b66153c7a235166974de8fa1b638eaebc4514433d0ad7713a740237b814cc2"
+    },
+    {
+      "id": "openbookqa:8",
+      "source_index": 8,
+      "content_sha256": "9cfb7c676cf1bb40bbe9b86f97c40ade2fcbe3f02f40b6a11612a65ccc45eee0"
+    },
+    {
+      "id": "openbookqa:77",
+      "source_index": 77,
+      "content_sha256": "89063717fbcc2cd7027803b7b697f6d1eebbc4a78e1c8f469229b063a7d2c8fe"
+    },
+    {
+      "id": "openbookqa:443",
+      "source_index": 443,
+      "content_sha256": "d2746a5439fc4bbb85b7b2efc972ceabf844c3db558202d8fdb9c4a3928b0ce7"
+    },
+    {
+      "id": "openbookqa:423",
+      "source_index": 423,
+      "content_sha256": "d991a3324d358c5ab57f66ccba4b220d58ef0e975cc24efa6726d12256ef44ac"
+    },
+    {
+      "id": "openbookqa:352",
+      "source_index": 352,
+      "content_sha256": "018c52d0e6198996e18e2eb3300b74aa8a76bdb31e747a3663be9bd7d561adeb"
+    },
+    {
+      "id": "openbookqa:153",
+      "source_index": 153,
+      "content_sha256": "b37c5d6a65868dd416dc3c1495f4efbaa68dacc07785bfd93110e20b6342a70c"
+    },
+    {
+      "id": "openbookqa:485",
+      "source_index": 485,
+      "content_sha256": "d401e0903c047a86de70945de333194ebc7816472275f7dea68086c23da987a2"
+    },
+    {
+      "id": "openbookqa:158",
+      "source_index": 158,
+      "content_sha256": "589f8973b1b54480cf4e69ff6ece724e91cb4dba86900d4ae43be0ef31ccfda0"
+    },
+    {
+      "id": "openbookqa:412",
+      "source_index": 412,
+      "content_sha256": "98aef4abbee14588376259cdca5e7cab51cc75071c886a429b9ab3aadc9048f7"
+    },
+    {
+      "id": "openbookqa:183",
+      "source_index": 183,
+      "content_sha256": "e898611398d70c9f135121382480ae7c69b00a7e134824b54514d23b2a1a3bdb"
+    },
+    {
+      "id": "openbookqa:248",
+      "source_index": 248,
+      "content_sha256": "f840cf9b8b597f3c65746c234aada61d743950714d763ca80da92ab05319b3a3"
+    },
+    {
+      "id": "openbookqa:249",
+      "source_index": 249,
+      "content_sha256": "4a9a66cb16215b73b0f0ab9639d41e01b832b111f4b5ff102a5f033f392a9dfa"
+    },
+    {
+      "id": "openbookqa:275",
+      "source_index": 275,
+      "content_sha256": "c84e48f325b97d7576e72354ad621711bd583ada3c27e84c612c609904eedc0d"
+    },
+    {
+      "id": "openbookqa:244",
+      "source_index": 244,
+      "content_sha256": "35621607130bafc0746f951eed6fd648ec1f0052f29b1d55219525c4aa2157bb"
+    },
+    {
+      "id": "openbookqa:53",
+      "source_index": 53,
+      "content_sha256": "354de9806a4db9c8181b59ea1d940a7e6da419f814498abf676aa4355675dd15"
+    },
+    {
+      "id": "openbookqa:137",
+      "source_index": 137,
+      "content_sha256": "bdc404d32fb92a0c9476b63d236f8d8bcf0870bb93019c31ba7b05b01d35c3fd"
+    },
+    {
+      "id": "openbookqa:237",
+      "source_index": 237,
+      "content_sha256": "18b30daa907dfc7784920e7c1c752a727855bcdb041ceb51625a34aad16243e0"
+    },
+    {
+      "id": "openbookqa:89",
+      "source_index": 89,
+      "content_sha256": "261528c04436d5e13782f4f18541586bf5b2e2d21c421e6dc16f979b77ca45aa"
+    },
+    {
+      "id": "openbookqa:156",
+      "source_index": 156,
+      "content_sha256": "dd7bdbe2dfe22f24095cf68db2fff900d8613e211383db196914d8fc48bb7758"
+    },
+    {
+      "id": "openbookqa:101",
+      "source_index": 101,
+      "content_sha256": "353e10f02677f4a1cb8268a397f3a6c3ecea384fae2f21063ad3e98647fd51ab"
+    },
+    {
+      "id": "openbookqa:41",
+      "source_index": 41,
+      "content_sha256": "9d116f7142cd9b4e46084b7256779e86a25e902c8179abfbd053300ddd41e730"
+    },
+    {
+      "id": "openbookqa:56",
+      "source_index": 56,
+      "content_sha256": "f09b6774f4da0502718594edbe2c7ed6587d7a549c81b225839c613d1d5327c0"
+    },
+    {
+      "id": "openbookqa:310",
+      "source_index": 310,
+      "content_sha256": "d31ba0b42bfced983f65104c7a19b3e8799f99d96f66209ea697a3f6538ae83a"
+    },
+    {
+      "id": "openbookqa:177",
+      "source_index": 177,
+      "content_sha256": "26ac740ca908da9d40f50e10a34d1838579f7fb070d4ed4199009e4f40b47559"
+    },
+    {
+      "id": "openbookqa:303",
+      "source_index": 303,
+      "content_sha256": "81e2c3517a8ddc251228434b6003156ed2d7f65cc5f9fc567ca1f1ab6a8d1b74"
+    },
+    {
+      "id": "openbookqa:436",
+      "source_index": 436,
+      "content_sha256": "e26ce90f5a1d0bfe991fd625298b34aed9da36f2d44eb2b386b7704da0343d22"
+    },
+    {
+      "id": "openbookqa:92",
+      "source_index": 92,
+      "content_sha256": "ddf842bfeab2bea7e895c6ec374f8010d59a91a66bd52e4247f6f8003e4d4822"
+    },
+    {
+      "id": "openbookqa:59",
+      "source_index": 59,
+      "content_sha256": "6c241726eab79fe346822f27536edc8de430a521ecc045a3ed16ba902fa9d586"
+    },
+    {
+      "id": "openbookqa:195",
+      "source_index": 195,
+      "content_sha256": "b1c8044dbb5e1b6d49bbd68e220bebb3f7ad2c71b754d76568cd71fc03909628"
+    },
+    {
+      "id": "openbookqa:113",
+      "source_index": 113,
+      "content_sha256": "aeccd6138f1e5acee194af750ac99defb16534b1bc086c277af4bbe9e44584c0"
+    },
+    {
+      "id": "openbookqa:476",
+      "source_index": 476,
+      "content_sha256": "a52133a54019b47b4e0d9cea32a358f06772bdd4df0308c1a9568038b2fc13a4"
+    },
+    {
+      "id": "openbookqa:133",
+      "source_index": 133,
+      "content_sha256": "3a3fbed98973095707149c90137554dffdec418168e275a79fafaa34378fe970"
+    },
+    {
+      "id": "openbookqa:486",
+      "source_index": 486,
+      "content_sha256": "136bd78cbfecc9f241e49b83b114e8d4d66bd6db346baf41a4e71991523bc88c"
+    },
+    {
+      "id": "openbookqa:460",
+      "source_index": 460,
+      "content_sha256": "f8279b7706305eb7af7fa28d8162427c2630502d12bc03e1890c7d5624f9cb92"
+    },
+    {
+      "id": "openbookqa:83",
+      "source_index": 83,
+      "content_sha256": "b7c7f6cd59d62624cee340c9b602df953073fac1a247fcc174c4fcc0b5895c57"
+    },
+    {
+      "id": "openbookqa:145",
+      "source_index": 145,
+      "content_sha256": "18223e7accfa3ec9e5957b2159ad60bb3c571a6cd09d887be9ff40608d8e4ea9"
+    },
+    {
+      "id": "openbookqa:332",
+      "source_index": 332,
+      "content_sha256": "5d3868f9589e7abc56c4095636766354e4758be1a2ed310d209f91b11eb0d6d0"
+    },
+    {
+      "id": "openbookqa:135",
+      "source_index": 135,
+      "content_sha256": "a365afa06f338c4da45c3bd123a4d75318e1705d0c06bcc410abd83382850110"
+    },
+    {
+      "id": "openbookqa:124",
+      "source_index": 124,
+      "content_sha256": "abfa746da185c3e6c35560b9d8d1815a567da874bfd6fecd89045734dd3d2053"
+    },
+    {
+      "id": "openbookqa:323",
+      "source_index": 323,
+      "content_sha256": "420f9fe44c32f67d769758b6435114508e0edbbdc9327caa64d570d5d14711b2"
+    },
+    {
+      "id": "openbookqa:35",
+      "source_index": 35,
+      "content_sha256": "259572ddd2ef44b92782a395f9a8fdc5e7a370b64e0e8c34468e539224460d5a"
+    },
+    {
+      "id": "openbookqa:390",
+      "source_index": 390,
+      "content_sha256": "3fdeeaacf0b92e3838f1ba825742ae46871f6286449082ee29f6c8fa8a0998ac"
+    },
+    {
+      "id": "openbookqa:350",
+      "source_index": 350,
+      "content_sha256": "565d3d217a60af59c8133dc7c464fc41b2c2f6ce45faaa412c3224136b941038"
+    },
+    {
+      "id": "openbookqa:190",
+      "source_index": 190,
+      "content_sha256": "7148e09bba5c20611378cb51c20bd64fb85307f864b7bbdd40d102d197c45640"
+    },
+    {
+      "id": "openbookqa:226",
+      "source_index": 226,
+      "content_sha256": "5df60b63e9bbee528b0c7133907a9c762058900ee2ce3476a4013e16825154f6"
+    },
+    {
+      "id": "openbookqa:182",
+      "source_index": 182,
+      "content_sha256": "372eeafe5fd43ee91153ef8ade24dda7253f2cbd2f71e4926b5af4e6886cf99a"
+    },
+    {
+      "id": "openbookqa:266",
+      "source_index": 266,
+      "content_sha256": "b5c62a8d7b6d449dc8b81c60d852b8e2b1a40663671e127a359fe66b7ce405c9"
+    },
+    {
+      "id": "openbookqa:74",
+      "source_index": 74,
+      "content_sha256": "3e44e2e171dd1077ebd9a8c746d76637f28294a7c5bf803a8bc23a0561f450ab"
+    },
+    {
+      "id": "openbookqa:347",
+      "source_index": 347,
+      "content_sha256": "db0366425631ce76f83970186c260f9e158b3b1c7b6830084ef87fcb5756ecde"
+    }
+  ]
+}
