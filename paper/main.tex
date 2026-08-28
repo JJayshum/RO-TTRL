@@ -10,6 +10,7 @@
 \usepackage{array}
 \usepackage{multirow}
 \usepackage{tabularx}
+\usepackage{float}
 \usepackage{enumitem}
 \usepackage{xcolor}
 \usepackage{tikz}
@@ -21,7 +22,6 @@
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 
 \newcommand{\pp}{\,\mathrm{pp}}
-\newcommand{\ci}[2]{[#1,\,#2]}
 \newcommand{\ro}{\textsc{Relational-Orbit}}
 \newcommand{\rootonly}{\textsc{Root}}
 \newcommand{\mapped}{\textsc{Mapped}}
@@ -35,7 +35,7 @@
 \maketitle
 
 \begin{abstract}
- Large language models are sensitive to the coordinate system used to express a multiple-choice problem: reordering answer options can change the emitted label even when the underlying question is unchanged. Standard self-consistency treats such outputs as samples in one label space and therefore cannot distinguish semantic agreement from coordinate agreement. We study a controlled alternative, \ro{} inference, which applies the exact inverse of a known option permutation to every transformed-view answer before aggregating a smoothed categorical distribution. In a preregistered shared-question block, the method improved the fixed-model average across Qwen2.5-3B, Qwen2.5-7B and Llama-3.2-3B by 3.13 percentage points (95\% bootstrap interval [0.17, 5.90]) and exceeded randomized maps by 34.67 points. A frozen extension to Phi-3.5-mini, Mistral-7B-Instruct-v0.3 and Gemma-2-2B produced positive point estimates for all three models and a fixed-model average gain of 3.65 points (95\% interval [0.87, 6.60]), although its strict individual-replication gate was not passed. Two independent follow-up blocks on ARC-Challenge, OpenBookQA and MMLU increased the pooled evidence to 384 paired questions: mapped inference improved accuracy by 7.29 points over root inference (95\% interval [2.60, 11.98]) and exceeded randomized maps by 30.29 points. The evidence supports positive average transfer across the tested fixed panel, not universal benefit for every model, benchmark or transformation; mapped test-time reinforcement-learning (TTRL) rewards were positive on an easy synthetic family but inconclusive on a real-benchmark diagnostic.
+ Large language models are sensitive to the coordinate system used to express a multiple-choice problem: reordering answer options can change the emitted label even when the underlying question is unchanged. Standard self-consistency treats such outputs as samples in one label space and therefore cannot distinguish semantic agreement from coordinate agreement. We study a controlled alternative, \ro{} inference, which applies the exact inverse of a known option permutation to every transformed-view answer before aggregating a smoothed categorical distribution. On the first Qwen2.5-3B public-benchmark block, mapped inference improved matched-compute accuracy by 17.71 percentage points. Two independent Qwen2.5-3B follow-up blocks retained a 7.29-point gain across 384 new questions. A shared-question panel spanning Qwen, Llama, Phi, Mistral and Gemma checkpoints showed positive fixed-model average effects, and a further shared block gave a 9.38-point gain for Mistral-7B. Correct maps consistently outperformed randomized maps, while Qwen2.5-7B ceiling effects, a negative Gemma-MMLU result, harder synthetic tasks and affine transformations exposed clear boundaries. The evidence supports positive average transfer across the tested fixed panel, not universal benefit for every model, benchmark or transformation; mapped test-time reinforcement-learning (TTRL) remained exploratory on real benchmarks.
 \end{abstract}
 
 \section{Introduction}
@@ -133,135 +133,175 @@ For each mapped prediction, we recompute the prediction after omitting each tran
 
 All language-model experiments used FP16 inference on one NVIDIA RTX 3090 with 24 GB memory. Unless otherwise stated, prompts used temperature 0.8, top-$p$ 0.95, maximum 192 new tokens, four cyclic views and four samples per view. The primary benchmarks were ARC-Challenge validation \citep{clark2018arc}, OpenBookQA validation \citep{mihaylov2018openbookqa} and MMLU test \citep{hendrycks2021mmlu}, restricted to eligible four-option questions. Dataset snapshots were mirrored locally, fingerprinted and recorded in every manifest.
 
-The initial public-benchmark transfer used Qwen2.5-3B-Instruct; a disjoint content-hash block was used for Qwen2.5-7B-Instruct \citep{qwen2025technical}. The shared block then evaluated Qwen2.5-3B-Instruct, Qwen2.5-7B-Instruct and Llama-3.2-3B-Instruct \citep{dubey2024llama} on the same 192 questions. A separate frozen panel evaluated Phi-3.5-mini-Instruct \citep{abdin2024phi}, Mistral-7B-Instruct-v0.3 \citep{jiang2023mistral} and Gemma-2-2B-it \citep{team2024gemma2} on that same shared block. The panel was frozen before any candidate output was inspected.
+The initial public-benchmark transfer used Qwen2.5-3B-Instruct; a disjoint content-hash block was used for Qwen2.5-7B-Instruct \citep{qwen2025technical}. The first shared block evaluated Qwen2.5-3B-Instruct, Qwen2.5-7B-Instruct and Llama-3.2-3B-Instruct \citep{dubey2024llama} on the same 192 questions. A frozen extension evaluated Phi-3.5-mini-Instruct \citep{abdin2024phi}, Mistral-7B-Instruct-v0.3 \citep{jiang2023mistral} and Gemma-2-2B-it \citep{team2024gemma2} on those identical question hashes. Later independent-sample experiments evaluated two new Qwen2.5-3B blocks, one new Qwen2.5-7B block and a second 192-question block shared exactly across Gemma, Phi and Mistral. All model checkpoints were fixed before their corresponding generations.
 
 \subsection{Question blocks and preregistration}
 
-Question selection was deterministic using content hashes. The initial 3B and 7B transfer blocks, the adaptation training and evaluation blocks, and the original Llama block were disjoint. The shared block removed all prior hashes before selecting 64 questions per benchmark with seed 20260817. The later three-model panel reused this shared block to estimate model-family transfer at fixed questions; it did not change prompts, parser, maps or thresholds after candidate inference.
+Question selection was deterministic using content hashes. The initial 3B and 7B transfer blocks, the adaptation training and evaluation blocks, and the original Llama block were disjoint. The first shared block removed all prior hashes before selecting 64 questions per benchmark with seed 20260817. The two Qwen2.5-3B follow-up blocks used new sample offsets and were combined only after all three benchmarks in both blocks finished. The Qwen2.5-7B precision block explicitly excluded every prior 7B manifest. The 20260828 Gemma/Phi/Mistral block likewise excluded the first shared panel; manifest audits confirmed that all three models received the same 64 questions per benchmark. Thus cross-model averages use paired shared questions, whereas within-model replication pools disjoint questions.
 
-\subsection{Primary estimands and uncertainty}
+\subsection{Primary estimands and reporting}
 
-For every question, the primary paired contrast was mapped correctness minus matched-compute root correctness. The map-control contrast was mapped correctness minus the mean correctness of 20 randomized inverse-map controls generated from the same transformed samples. Intervals were paired bootstrap intervals. For shared blocks, questions were resampled with replacement within benchmark strata and the same sampled indices were applied to every fixed model. For the cross-family panel, 10,000 bootstrap replicates were used. The model checkpoints are fixed estimands, not random draws from the space of all language models.
+For every question, the primary paired contrast was mapped correctness minus matched-compute root correctness. The map-control contrast was mapped correctness minus the mean correctness of 20 randomized inverse-map controls generated from the same transformed samples. The main text reports sample size, Root and Mapped accuracy, percentage-point differences, map controls and frozen gate decisions. To keep the enlarged result tables readable, numerical uncertainty intervals are archived in the machine-readable supplementary analyses rather than repeated in the main text. All gate decisions still use the prespecified paired bootstrap calculations. For shared blocks, questions are resampled within benchmark strata and the same indices are applied to every fixed model. Model checkpoints are fixed estimands, not random draws from all language models.
 
-The shared-block paper gate required a positive fixed-model-average interval, at least two of three nonnegative model effects, no model interval wholly below zero, a positive map-control interval with effect at least 5 points, truth support at least 0.80 and parse failure at most 0.10 for every model, plus successful audits. The cross-family panel added a stricter requirement that at least one new model independently exceed 3 points with an interval excluding zero. Failed gates were retained and did not trigger tuning on their evaluation questions.
+The shared-block paper gate required a positive fixed-model-average uncertainty result, at least two of three nonnegative model effects, no model wholly negative under the paired analysis, a map-control effect of at least 5 points with positive uncertainty bounds, truth support at least 0.80 and parse failure at most 0.10 for every model, plus successful audits. The cross-family panel added a stricter requirement that at least one new model independently exceed 3 points and pass its paired uncertainty criterion. Failed gates were retained and did not trigger tuning on their evaluation questions. Per-model and per-benchmark comparisons outside a frozen gate are descriptive and are not multiplicity-adjusted.
 
 \section{Results}
 
-We organize the results around one question: when does canonicalizing option-permuted views improve a fixed-compute decision? We first test the recovery mechanism, then establish the primary transfer effect and its cross-model boundary, and finally report secondary diagnostics and failure cases.
+We organize the experiments as an evidence ladder: controlled recovery, public-benchmark transfer, matched cross-model comparisons, independent new-sample replication, and finally compute, reliability and failure-boundary analyses. Accuracy and effect values below are percentages or percentage-point differences.
 
 \subsection{Mechanism and synthetic recovery}
 
 The CPU testbed first isolated the statistical mechanism from language-model behavior. With 10,000 simulated orbits, dispersed shortcut errors produced a mapped accuracy of 1.000 versus 0.125 for root-only inference (a +87.5-point contrast). A stable shortcut produced 0.020 mapped accuracy versus 0.125 root accuracy, and a coherently wrong regime produced zero accuracy for both methods. Thus mapping can repair errors when view-specific shortcuts disperse, but cannot repair a coherent wrong mode.
 
-The easy synthetic Qwen2.5-3B inference pilot reproduced the predicted recovery effect. In the confirmatory 64-orbit block, mapped pooling improved accuracy from 0.547 to 0.813 (+26.56 points, 95\% CI [+15.63, +39.06]); an independent 64-orbit replication improved accuracy from 0.578 to 0.828 (+25.00 points, CI [+12.50, +37.50]). Correct maps exceeded randomized gauges by 43.44 and 44.30 points, respectively. Truth-support coverage was at least 0.969 and parse failure was approximately 2\% in both runs.
+The easy synthetic Qwen2.5-3B pilot reproduced the predicted recovery effect. In the confirmatory 64-orbit block, mapped pooling improved accuracy from 54.69\% to 81.25\% (+26.56 points); an independent 64-orbit replication improved accuracy from 57.81\% to 82.81\% (+25.00 points). Correct maps exceeded randomized gauges by 43.44 and 44.30 points, respectively. Truth-support coverage was at least 96.9\% and parse failure was approximately 2\% in both runs.
 
-The preregistered medium-difficulty gate was intentionally harder: each arithmetic problem used two or three operations and moduli 11, 13, 17 or 19. One seed gave +12.50 points and the other gave -1.56 points; the pooled effect was +5.47 points, but its interval included zero and the map-control threshold was not met. A post-gate easy reference reproduced a +31.25-point mapped gain, ruling out environment drift. We therefore interpret the medium result as a capability boundary rather than an implementation failure.
+The preregistered medium-difficulty gate was intentionally harder: each arithmetic problem used two or three operations and moduli 11, 13, 17 or 19. One seed gave +12.50 points and the other -1.56 points; their pooled +5.47-point effect did not meet the frozen effect and map-control criteria. A post-gate easy reference reproduced a +31.25-point gain, ruling out environment drift. The medium result therefore marks a model-capability boundary rather than an implementation failure.
 
-\begin{table}[t]
+\begin{table}[H]
 \centering\small
-\caption{Synthetic inference and transformation-family boundaries. Values are accuracy differences in percentage points; intervals are paired 95\% bootstrap intervals.}
+\caption{Synthetic recovery and transformation-family boundaries. Each model-backed row reports matched-compute accuracy and the correct-map advantage over randomized maps.}
 \label{tab:synthetic}
-\begin{tabular}{lrrr}
+\begin{tabular}{lrrrrr}
 \toprule
-Condition & Root & Mapped & Mapped $-$ Root \\
+Condition & $n$ & Root & Mapped & Difference & Map control \\
 \midrule
-Easy, seed 808 & 54.69 & 81.25 & +26.56 [15.63, 39.06] \\
-Easy, seed 909 & 57.81 & 82.81 & +25.00 [12.50, 37.50] \\
-Medium, seed 6808 & 31.25 & 43.75 & +12.50 [-3.13, 28.13] \\
-Medium, seed 6909 & 32.81 & 31.25 & -1.56 [-14.06, 10.94] \\
-Boolean negation & 31.25 & 37.50 & +6.25 [-6.25, 18.75] \\
-Affine scale + shift & 59.38 & 53.13 & -6.25 [-15.63, 0.00] \\
-Affine shift-only & 87.50 & 68.75 & -18.75 [-31.25, -6.25] \\
+Easy, seed 808 & 64 & 54.69 & 81.25 & +26.56 & +43.44 \\
+Easy, seed 909 & 64 & 57.81 & 82.81 & +25.00 & +44.30 \\
+Medium, seed 6808 & 64 & 31.25 & 43.75 & +12.50 & +12.27 \\
+Medium, seed 6909 & 64 & 32.81 & 31.25 & -1.56 & +7.19 \\
+Boolean negation & 32 & 31.25 & 37.50 & +6.25 & -0.94 \\
+Affine scale + shift & 32 & 59.38 & 53.13 & -6.25 & +23.59 \\
+Affine shift-only & 32 & 87.50 & 68.75 & -18.75 & +29.53 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 The transformation-family characterization further bounded the claim. Boolean negation was retained as a negative control because the correct-map advantage over randomized maps was -0.94 points. Affine transformations beat randomized gauges but harmed root-only accuracy, with mapped-minus-root effects of -6.25 and -18.75 points for the two affine families. Exact semantic validity of a map therefore does not guarantee a positive net accuracy effect.
 
-\subsection{Primary transfer to public benchmarks and model scale}
+\subsection{Primary public-benchmark transfer}
 
-The first public-benchmark transfer used 64 questions per benchmark and matched 16 total generations per question. On Qwen2.5-3B, mapped pooling improved ARC-Challenge from 0.469 to 0.750 (+28.13 points, CI [+15.63, +40.63]), OpenBookQA from 0.750 to 0.859 (+10.94 points, CI [+4.69, +18.75]) and MMLU from 0.391 to 0.531 (+14.06 points, CI [+1.56, +26.56]). The pooled improvement was +17.71 points (CI [+10.94, +24.48]). Correct maps exceeded randomized gauges by 35.6 points in the pooled block.
+The first public-benchmark transfer used 64 questions per benchmark and 16 total generations per question. On Qwen2.5-3B, mapped pooling improved ARC-Challenge by 28.13 points, OpenBookQA by 10.94 points and MMLU by 14.06 points. Pooled accuracy rose from 53.65\% to 71.35\%, a +17.71-point gain, and the frozen transfer gate passed. Correct maps exceeded randomized maps by 35.63 points, showing that option diversity without the known inverse correspondence was insufficient.
 
-To test whether this effect persisted outside the first transfer sample, we preregistered two independent follow-up blocks on the same three benchmarks. Each block used 64 questions per benchmark, a new sample offset and a new run seed, with no tuning or selective stopping. Across the two blocks (384 paired questions in total), root accuracy was 59.38\% and mapped accuracy was 66.67\%, for a +7.29-point gain (95\% CI [+2.60, +11.98]). The benchmark-specific point estimates were +9.38 points on ARC-Challenge, +6.25 on OpenBookQA and +6.25 on MMLU; only the pooled interval excludes zero. Correct maps exceeded randomized maps by +30.29 points (95\% CI [+24.80, +36.08]). These follow-up results provide an independent precision check rather than a replacement for the original transfer gate.
+The disjoint Qwen2.5-7B confirmation also passed its original gate. Root accuracy was already 79.69\%, while mapped accuracy reached 84.90\%, giving a smaller +5.21-point gain. Its +40.39-point map control remained large, consistent with a ceiling-limited accuracy effect rather than failure of the relational signal.
 
-Qwen2.5-7B was evaluated on a disjoint 64-question block per benchmark with unchanged prompts and sampling. The pooled gain was smaller but positive: root accuracy was 0.797 and mapped accuracy was 0.849, a +5.21-point difference with CI [+1.56, +8.85]. The reduced effect is compatible with a ceiling effect: the root baseline was already high, while the correct-map advantage over randomized gauges remained +40.4 points.
-
-\begin{table}[t]
+\begin{table}[H]
 \centering\small
-\caption{Public-benchmark transfer at two Qwen2.5 scales. Each row contains 64 questions; the pooled row contains 192 paired questions.}
+\caption{Initial public-benchmark transfer at two Qwen2.5 scales. Each benchmark row contains 64 questions; pooled rows contain 192 independent questions.}
 \label{tab:public}
-\begin{tabular}{llrrr}
+\begin{tabular}{llrrrr}
 \toprule
-Model & Benchmark & Root & Mapped & Difference (95\% CI) \\
+Model & Benchmark & Root & Mapped & Difference & Map control \\
 \midrule
-3B & ARC-Challenge & 46.9 & 75.0 & +28.1 [15.6, 40.6] \\
-3B & OpenBookQA & 75.0 & 85.9 & +10.9 [4.7, 18.8] \\
-3B & MMLU & 39.1 & 53.1 & +14.1 [1.6, 26.6] \\
-3B & Pooled & 53.6 & 71.4 & +17.7 [10.9, 24.5] \\
+3B & ARC-Challenge & 46.9 & 75.0 & +28.1 & +43.2 \\
+3B & OpenBookQA & 75.0 & 85.9 & +10.9 & +44.8 \\
+3B & MMLU & 39.1 & 53.1 & +14.1 & +18.9 \\
+3B & Pooled & 53.6 & 71.4 & \textbf{+17.7} & +35.6 \\
 \midrule
-7B & ARC-Challenge & 90.6 & 93.8 & +3.1 [0.0, 7.8] \\
-7B & OpenBookQA & 81.3 & 87.5 & +6.3 [0.0, 14.1] \\
-7B & MMLU & 67.2 & 73.4 & +6.3 [0.0, 14.1] \\
-7B & Pooled & 79.7 & 84.9 & +5.2 [1.6, 8.9] \\
+7B & ARC-Challenge & 90.6 & 93.8 & +3.1 & +48.8 \\
+7B & OpenBookQA & 81.3 & 87.5 & +6.3 & +42.3 \\
+7B & MMLU & 67.2 & 73.4 & +6.3 & +30.2 \\
+7B & Pooled & 79.7 & 84.9 & \textbf{+5.2} & +40.4 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\subsection{Shared-question confirmation and cross-family transfer}
+\subsection{Matched cross-model transfer on a shared question block}
 
-The paper-scale shared block used the same 192 questions for Qwen2.5-3B, Qwen2.5-7B and Llama-3.2-3B. The fixed-model average mapped-minus-root effect was +3.13 points (95\% CI [+0.17, +5.90]), and the correct-map-minus-randomized effect was +34.67 points (CI [+28.38, +40.97]). Qwen2.5-3B showed +7.29 points (CI [+0.52, +14.06]), Qwen2.5-7B +2.60 points (CI [-1.04, +6.25]) and Llama-3.2-3B -0.52 points (CI [-5.21, +4.17]). The shared-block gate passed because the fixed-model interval was positive, no model interval was wholly below zero, the map control was positive, and all data and numerical audits passed. The Llama effect remains unresolved rather than positive evidence for universal family transfer.
+The first cross-model analysis evaluated Qwen2.5-3B, Qwen2.5-7B and Llama-3.2-3B on exactly the same 192 questions. Their fixed-model average gain was +3.13 points, and correct maps exceeded randomized maps by +34.67 points. The frozen shared-block gate passed. The model-level effects were heterogeneous: Qwen2.5-3B improved by +7.29 points, Qwen2.5-7B by +2.60 points, and Llama-3.2-3B by -0.52 points. The Llama result therefore remains a null boundary rather than evidence for universal transfer.
 
-We then evaluated three additional model families on the same frozen question block. All three point estimates were positive: Phi-3.5-mini +2.08 points (CI [-1.04, +5.21]), Mistral-7B-Instruct-v0.3 +5.21 points (CI [-0.52, +10.94]) and Gemma-2-2B +3.65 points (CI [-1.04, +8.33]). Their fixed-model average was +3.65 points (CI [+0.87, +6.60]), and correct maps exceeded randomized maps by +34.23 points (CI [+27.92, +40.76]). Truth support ranged from 0.943 to 0.979 and parse failure from 0.005 to 0.010. Structural audits, overlap checks, per-view symmetry checks and matched-token checks passed for all three models.
+We next ran Phi-3.5-mini, Mistral-7B and Gemma-2-2B on the identical question hashes. All three point estimates were positive, yielding a +3.65-point fixed-model average and a +34.23-point map control. Truth support ranged from 94.3\% to 97.9\%, parse failure ranged from 0.5\% to 1.0\%, and the structural, overlap, symmetry and token-budget audits passed. The stricter extension gate nevertheless failed because no new model independently passed its paired criterion on this first block. This panel supports positive average transfer across the fixed checkpoints, not confirmed benefit for every checkpoint.
 
-The strict cross-family gate was not passed: none of the three individual intervals excluded zero. This criterion was deliberately stronger than a positive panel average. The result is therefore best described as positive average transfer across a diverse fixed panel, with insufficient evidence for an individually confirmed effect in every new family.
-
-\begin{table}[t]
+\begin{table}[H]
 \centering\small
-\caption{New cross-family panel on the shared 192-question block. All values are primary N=16 inference results.}
+\caption{Matched cross-model results on one shared block of 192 independent questions. Each panel average contains 576 model--question observations, but inference preserves the 192-question pairing and treats the listed checkpoints as fixed.}
 \label{tab:families}
-\begin{tabular}{lrrrrr}
+\begin{tabular}{lrrrrl}
 \toprule
-Model & Root & Mapped & Difference & 95\% CI & Map control \\
+Model or fixed panel & Root & Mapped & Difference & Map control & Decision \\
 \midrule
-Phi-3.5-mini & 80.2 & 82.3 & +2.1 & [-1.0, +5.2] & +36.8 \\
-Mistral-7B & 66.7 & 71.9 & +5.2 & [-0.5, +10.9] & +30.9 \\
-Gemma-2-2B & 72.4 & 76.0 & +3.6 & [-1.0, +8.3] & +34.9 \\
-Fixed-model average & -- & -- & +3.6 & [+0.9, +6.6] & +34.2 \\
+Qwen2.5-3B & 62.0 & 69.3 & +7.3 & +31.6 & Descriptive \\
+Qwen2.5-7B & 82.3 & 84.9 & +2.6 & +40.2 & Descriptive \\
+Llama-3.2-3B & 75.0 & 74.5 & -0.5 & +32.2 & Descriptive \\
+Qwen/Llama average & 73.1 & 76.2 & \textbf{+3.1} & +34.7 & Passed \\
+\midrule
+Phi-3.5-mini & 80.2 & 82.3 & +2.1 & +36.8 & Descriptive \\
+Mistral-7B & 66.7 & 71.9 & +5.2 & +30.9 & Descriptive \\
+Gemma-2-2B & 72.4 & 76.0 & +3.6 & +34.9 & Descriptive \\
+Phi/Mistral/Gemma average & 73.1 & 76.7 & \textbf{+3.6} & +34.2 & Strict gate failed \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\subsection{Secondary analyses: compute scaling, pooling and reliability}
+\subsection{Independent new-sample replication}
 
-The stored generations allowed a prespecified N=4/8/16 scaling analysis without additional model calls. In the new panel, the low-budget N=4 mapped-minus-root effects were +5.21 points for Phi-3.5-mini (CI [+1.04, +9.90]), +8.33 points for Mistral-7B (CI [+2.08, +14.58]) and +2.60 points for Gemma-2-2B (CI [-3.13, +8.33]). At N=16, the corresponding effects were +2.08, +5.21 and +3.65 points. The Qwen and Llama panels showed the same qualitative ceiling dependence in several blocks, although not uniformly. These results suggest that relational alignment is most useful when the root baseline has limited sampling budget; N=4 and N=8 remain secondary analyses.
+Independent question blocks sharpened the generalization claim (Table~\ref{tab:replication}). Two disjoint Qwen2.5-3B follow-up blocks produced gains of +6.77 and +7.81 points. Combined across 384 independent questions, Root accuracy was 59.38\% and Mapped accuracy was 66.67\%, a +7.29-point gain that passed the frozen paired criterion. By contrast, the expanded Qwen2.5-7B evidence remained ceiling limited: across its original and new blocks, Root was 84.38\%, Mapped was 84.90\%, and the +0.52-point effect did not pass.
 
-Hard vote and log-opinion pooling were close in many blocks, but their differences were not consistently positive. For example, on the new panel the N=16 hard-vote effects were +1.56 points for Phi, -0.52 for Mistral and +1.04 for Gemma relative to log pooling. The main estimator was therefore retained as the full-support log-opinion pool, while hard vote was reported as an ablation rather than selected post hoc.
+The second block shared by Gemma, Phi and Mistral produced the clearest cross-family replication. Mistral-7B improved from 69.27\% to 78.65\% (+9.38 points) and passed its individual gate; OpenBookQA contributed the largest benchmark-level gain at +14.06 points. Phi improved by +2.60 points but did not pass individually. Gemma changed by -0.52 points overall and fell by 10.94 points on MMLU, an explicit negative model--benchmark result. Averaging the three fixed models on the 192 shared questions gave +3.82 points and a +35.37-point map control. This three-model aggregate was computed after the shared hashes were verified and is reported descriptively rather than as a preregistered gate.
 
-Label-free reliability showed that stable predictions were substantially more accurate at selective coverage. At 50\% coverage, mapped accuracy was 96.9\% for Phi-3.5-mini, 93.8\% for Mistral-7B and 92.7\% for Gemma-2-2B. Mean leave-one-view-out agreement was 0.957, 0.897 and 0.930, respectively. The analogous 50\% accuracies for Qwen2.5-3B, Qwen2.5-7B and Llama-3.2-3B were 92.7\%, 97.9\% and 95.8\%. These analyses are descriptive and use no labels for ranking or threshold selection.
+\begin{table}[H]
+\centering\small
+\caption{Independent new-sample replication at the primary $N=16$ generation budget. The final row averages three fixed models over 192 shared questions (576 model--question observations) and is post-hoc descriptive.}
+\label{tab:replication}
+\begin{tabular}{lrrrrrl}
+\toprule
+Model or fixed panel & $n$ & Root & Mapped & Difference & Map control & Decision \\
+\midrule
+Qwen2.5-3B, two new blocks & 384 & 59.4 & 66.7 & \textbf{+7.3} & +30.3 & Passed \\
+Qwen2.5-7B, original + new & 384 & 84.4 & 84.9 & +0.5 & +39.6 & Failed \\
+Gemma-2-2B, new block & 192 & 75.5 & 75.0 & -0.5 & +32.6 & Failed \\
+Phi-3.5-mini, new block & 192 & 79.2 & 81.8 & +2.6 & +37.7 & Failed \\
+Mistral-7B, new block & 192 & 69.3 & 78.6 & \textbf{+9.4} & +35.8 & Passed \\
+Three-model fixed average & 192 & 74.7 & 78.5 & \textbf{+3.8} & +35.4 & Descriptive \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Compute scaling, pooling and label-free reliability}
+
+The stored generations permitted $N=4/8/16$ matched-compute analyses without additional model calls. No universal monotonic budget pattern emerged (Table~\ref{tab:scaling}). Qwen2.5-3B and Mistral improved as the budget increased, Phi and Gemma had larger gains at lower budgets, and Qwen2.5-7B stayed near its high Root ceiling. The prespecified $N=16$ result remains primary; selecting each model's best budget after observing outcomes would overstate performance.
+
+Hard vote and full-support log-opinion pooling were close across blocks, and neither uniformly dominated. We therefore retained log pooling as the primary estimator and report hard vote only as an ablation. The leave-one-view-out stability score also provided a useful label-free ranking signal. At 50\% coverage, Mapped accuracy ranged from 91.67\% to 96.88\% across the five independent analysis sets. These selective results are descriptive: labels were not used to rank examples, but performance has not been calibrated for an unseen deployment distribution.
+
+\begin{table}[H]
+\centering\small
+\caption{Compute scaling and selective accuracy on the independent follow-up sets. The first three columns report Mapped minus matched-compute Root in percentage points; the last reports Mapped accuracy after retaining the 50\% most stable questions.}
+\label{tab:scaling}
+\begin{tabular}{lrrrr}
+\toprule
+Model & $N=4$ & $N=8$ & $N=16$ & Accuracy at 50\% coverage \\
+\midrule
+Qwen2.5-3B & +2.9 & +6.3 & +7.3 & 91.7 \\
+Qwen2.5-7B & -1.0 & +0.8 & +0.5 & 96.9 \\
+Gemma-2-2B & +2.6 & +4.2 & -0.5 & 92.7 \\
+Phi-3.5-mini & +5.2 & +3.6 & +2.6 & 94.8 \\
+Mistral-7B & +0.5 & +5.2 & +9.4 & 92.7 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \subsection{Failure boundaries and exploratory adaptation}
 
-The easy synthetic adaptation study used five independent seeds, 16 unlabeled training orbits and 512 sequences per method per seed. Across 304 fresh evaluation orbits, mapped TTRL exceeded matched-compute root TTRL by +5.65 points under an equal-seed estimate; a hierarchical bootstrap interval was [+2.3, +9.1]. All five seed-level effects were positive. The mapped method also exceeded the unadapted base by +7.03 points with hierarchical CI [+3.4, +10.9]. Training KL remained finite and small.
+The easy synthetic TTRL study used five independent seeds, 16 unlabeled training orbits and 512 sequences per method per seed. Across 304 fresh evaluation orbits, mapped TTRL exceeded matched-compute root TTRL by +5.65 points under an equal-seed estimate, and all five seed-level effects were positive. The mapped method also exceeded the unadapted base by +7.03 points, with finite and small training KL.
 
-The real-benchmark adaptation diagnostic used 18 unlabeled training questions and 96 untouched evaluation questions. Mapped TTRL exceeded root TTRL by +2.08 points, but the paired interval was [-1.04, +5.21]. The benchmark-specific effects were -0.78 points on ARC-Challenge, +3.91 points on OpenBookQA and +3.13 points on MMLU. Because its prespecified interval included zero, no multi-seed real-benchmark adaptation expansion was run.
+The real-benchmark adaptation diagnostic used 18 unlabeled training questions and 96 untouched evaluation questions. Mapped TTRL exceeded root TTRL by +2.08 points, with benchmark-level effects of -0.78 on ARC-Challenge, +3.91 on OpenBookQA and +3.13 on MMLU. It did not pass the frozen paired uncertainty criterion, so no multi-seed real-benchmark adaptation expansion was run. TTRL is therefore exploratory rather than a primary empirical claim.
 
-The transformation and difficulty controls define a second boundary. The medium synthetic gate failed despite a positive map-control point estimate, and affine transformations often reduced root accuracy after mapping. These negative results rule out the stronger statement that any valid relational transformation or any harder reasoning distribution will benefit from pooling.
+Difficulty and transformation controls define a separate boundary. The medium synthetic gate failed despite one positive seed, Boolean negation did not beat the randomized-map control, and affine transformations reduced accuracy relative to Root by 6.25 and 18.75 points. These negative results rule out the stronger claim that any semantically valid transformation, model or reasoning distribution benefits from relational pooling.
 
 \section{Discussion}
 
 The experiments support a simple interpretation: when model errors contain a coordinate-dependent component, exact inverse alignment converts several transformed views into evidence about one semantic answer. The randomized-map controls are important here. Transformed prompts alone were not sufficient; the known map produced a large and consistent advantage over random inverse gauges across Qwen, Llama, Phi, Mistral and Gemma panels.
 
-The effect was heterogeneous. Qwen2.5-3B had the largest initial public-benchmark gain, while Qwen2.5-7B and the new families had smaller primary N=16 effects. The independent follow-up blocks reduced uncertainty for the pooled Qwen2.5-3B estimate and produced a confidence interval excluding zero, but benchmark-level intervals for OpenBookQA and MMLU remained wider. The low-budget scaling results indicate why: when root self-consistency already has high accuracy, there is less room for a view-alignment method to repair errors. Conversely, the weaker Mistral and Gemma baselines left more room for mapped pooling, but their question-level intervals were still too wide to establish an individually significant effect at the fixed block size.
+The effect was heterogeneous rather than model universal. Qwen2.5-3B retained a +7.29-point gain over two independent blocks, and Mistral-7B provided a separate +9.38-point cross-family replication. Qwen2.5-7B, however, changed by only +0.52 points after its evidence was expanded to 384 questions, consistent with limited headroom at 84.38\% Root accuracy. Gemma was neutral overall on its new block and negative on MMLU. The scaling analysis adds an important qualification: more samples strengthened Qwen2.5-3B and Mistral but not Phi, Gemma or Qwen2.5-7B. Budget and baseline accuracy influence the opportunity for alignment, but they do not fully explain the observed model--task interactions.
 
-The experiments also distinguish inference-time alignment from policy adaptation. Mapped rewards improved easy synthetic adaptation across seeds, but the real-benchmark diagnostic did not exclude zero. The policy update introduces additional sources of variance, including sparse training questions, model-specific optimization behavior and a mismatch between the training reward and final benchmark accuracy. We therefore treat TTRL as a secondary direction rather than the central contribution.
+The experiments also distinguish inference-time alignment from policy adaptation. Mapped rewards improved easy synthetic adaptation across all five seeds, but the real-benchmark diagnostic failed its frozen paired criterion. The policy update introduces additional sources of variance, including sparse training questions, model-specific optimization behavior and a mismatch between the training reward and final benchmark accuracy. We therefore treat TTRL as a secondary direction rather than the central contribution.
 
-Several limitations are intrinsic to the study. All public tasks use four-option multiple choice, and the maps are cyclic option permutations. The candidate model panel is fixed rather than sampled from the population of all language models. The cross-family panel reuses the shared question block, which is appropriate for matched model-transfer estimation but does not test transfer to new task content. Some benchmark-model pairs showed negative mapped-minus-root differences, including Llama on the shared block and Gemma on MMLU. The current study also does not provide a unified head-to-head comparison with every existing permutation-aware aggregation method. Finally, no result supports universal improvement across transformations: the affine controls provide explicit counterexamples.
+Several limitations are intrinsic to the study. All public tasks use four-option multiple choice, and the maps are cyclic option permutations. The candidate checkpoints are fixed rather than sampled from a population of language models, so fixed-model averages apply only to the tested panel. Shared blocks permit high-sensitivity matched comparisons, whereas only the later blocks test transfer to new task content. Some model--benchmark pairs were negative, including Llama on the first shared block and Gemma on the new MMLU block. The current study also lacks a unified head-to-head evaluation against every permutation-aware aggregation method. Finally, the affine controls show directly that exact knowledge of a transformation does not guarantee improved task accuracy.
 
 The practical implication is narrower and more useful than a universal claim. Exact relational alignment is a parameter-free inference wrapper that can improve average matched-compute multiple-choice accuracy and can provide a label-free confidence signal for selective prediction, although it increases generation cost by evaluating multiple prompt views. Its use should therefore be accompanied by task-specific validation, a randomized-map control, an explicit compute budget and comparison with the strongest available permutation-aware baseline. The current evidence motivates such validation rather than replacing it.
 
 \section{Conclusion}
 
-We introduced an auditable inference-time procedure that maps option-permuted model outputs into a shared canonical space before pooling. Across synthetic recovery tests, public benchmarks, Qwen scale confirmation, cross-family panels and two independent follow-up blocks, exact alignment produced positive average effects and large advantages over randomized maps. The 384-question pooled follow-up estimate was +7.29 points with a 95\% interval [+2.60, +11.98]. The evidence is strongest for inference-time use under constrained sampling budgets; TTRL adaptation remains exploratory. The method does not improve every model-task pair, does not transfer automatically to affine transformations or harder reasoning distributions, and does not justify a universal model-family claim.
+We introduced an auditable inference-time procedure that maps option-permuted model outputs into a shared canonical space before pooling. Exact alignment improved matched-compute accuracy by 7.29 points across 384 independent Qwen2.5-3B follow-up questions and by 9.38 points on an independent Mistral-7B block; both passed their frozen paired criteria. Fixed-model panels showed smaller positive average effects and large advantages over randomized maps, while Qwen2.5-7B, Gemma-MMLU, harder synthetic tasks and affine transformations established clear boundaries. The evidence supports a useful inference-time wrapper for validated four-option settings, not a universal improvement claim. TTRL adaptation on real benchmarks remains exploratory.
 
 \section*{Methods availability and reproducibility}
 
@@ -289,22 +329,30 @@ Transformation families & 32 per family & Boolean negative control and affine bo
 Qwen2.5-3B transfer & 64 per benchmark & Public-benchmark transfer gate; passed \\
 Qwen2.5-7B confirmation & 64 per benchmark & Disjoint model-scale confirmation; passed \\
 Synthetic adaptation & 5 seeds & Matched-compute mapped versus root TTRL; positive exploratory result \\
-Real adaptation & 18 train, 96 eval & Frozen policy-update diagnostic; interval included zero \\
-Original Llama gate & 64 per benchmark & First cross-family gate; interval included zero \\
+Real adaptation & 18 train, 96 eval & Frozen policy-update diagnostic; paired criterion not passed \\
+Original Llama gate & 64 per benchmark & First cross-family diagnostic; paired criterion not passed \\
 Shared three-model block & 192 shared questions & Qwen/Llama fixed-model paper gate; passed \\
 New family panel & 192 shared questions per model & Phi/Mistral/Gemma average transfer; strict individual gate not passed \\
-Follow-up block 1 & 192 questions & Independent Qwen2.5-3B precision check across three public benchmarks \\
-Follow-up block 2 & 192 questions & Pre-fixed independent replication; pooled interval excluded zero \\
+Qwen2.5-3B follow-up 1 & 192 questions & Independent replication block; individual gate not passed \\
+Qwen2.5-3B follow-up 2 & 192 questions & Independent replication block; passed \\
+Qwen2.5-7B precision block & 192 questions & New disjoint block; combined 384-question gate not passed \\
+Gemma-2-2B new block & 192 questions & Smaller-model replication; overall gate not passed \\
+Phi/Mistral new shared block & 192 shared questions per model & Mistral passed; Phi did not pass \\
+Three-model new-block average & 192 shared questions & 576 model--question observations; descriptive post-hoc summary \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-\section{Primary result tables from the shared blocks}
+\section{Machine-readable result inventory}
 
-For direct machine-readable values, see the JSON files in
-\texttt{outputs/paper\_scale\_shared/} and
-\texttt{outputs/cross\_family\_panel\_20260817/}. The manuscript rounds
-accuracy and effects to one decimal percentage point in tables while retaining
-the full precision intervals in the archived analysis outputs.
+The complete old-and-new result index is provided in the supplementary
+experiment CSV, with a readable Markdown companion at the repository root.
+Shared-block analyses are stored under \texttt{outputs/paper\_scale\_shared/}
+and \texttt{outputs/cross\_family\_panel\_20260817/}; the corrected new-block
+fixed-model analysis is stored in the dated follow-up reanalysis JSON. Exact
+filenames and source paths are indexed in the supplementary CSV. The main
+tables round accuracy and effects to one decimal percentage point. Full-precision
+estimates, paired uncertainty analyses, benchmark-level rows, parse diagnostics
+and manifest hashes remain in the archived outputs.
 
 \end{document}
