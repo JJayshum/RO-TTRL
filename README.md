@@ -44,6 +44,10 @@ The local test suite contains 30 tests and does not require a model download.
 - `outputs/cross_family_panel_20260817/`: Phi/Mistral/Gemma panel records and analysis.
 - `PILOT_RESULTS.md`: complete staged experiment history and decisions.
 - `CROSS_FAMILY_GENERALITY_RESULTS.md`: final cross-family panel report.
+- `SUPPLEMENTARY_EXPERIMENTS_COMPLETE.md`: consolidated supplemental results,
+  confidence intervals, negative outcomes, compute scaling, and audit notes.
+- `outputs/supplementary_experiments_complete.csv`: machine-readable table of
+  the independent benchmark follow-ups and persisted pooled analyses.
 - `STATISTICAL_ANALYSIS.md`: estimands, bootstrap design, and reporting rules.
 - `paper/`: LaTeX manuscript source and bibliography.
 
