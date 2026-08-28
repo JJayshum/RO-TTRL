@@ -1,0 +1,44 @@
+{
+  "status": "descriptive_post_hoc_fixed_model_reanalysis_not_a_preregistered_gate",
+  "design": {
+    "independent_unit": "shared question",
+    "bootstrap": "paired question resampling stratified by benchmark; models fixed",
+    "replicates": 10000,
+    "seed": 20260828,
+    "hash_audit": "all 64 content hashes match across included models within each benchmark"
+  },
+  "phi_mistral": {
+    "independent_questions": 192,
+    "model_question_observations": 384,
+    "fixed_models": ["phi35", "mistral7b"],
+    "mean_root_accuracy": 0.7421875,
+    "mean_mapped_accuracy": 0.8020833333333334,
+    "fixed_model_average_mapped_minus_root": 0.059895833333333336,
+    "fixed_model_average_mapped_minus_root_95ci": [
+      0.018164062500000057,
+      0.1015625
+    ],
+    "fixed_model_average_correct_map_minus_randomized": 0.3674479166666667,
+    "fixed_model_average_correct_map_minus_randomized_95ci": [
+      0.299609375,
+      0.433203125
+    ]
+  },
+  "gemma_phi_mistral": {
+    "independent_questions": 192,
+    "model_question_observations": 576,
+    "fixed_models": ["gemma2b", "phi35", "mistral7b"],
+    "mean_root_accuracy": 0.7465277777777778,
+    "mean_mapped_accuracy": 0.7847222222222222,
+    "fixed_model_average_mapped_minus_root": 0.03819444444444445,
+    "fixed_model_average_mapped_minus_root_95ci": [
+      0.0017361111111111112,
+      0.07291666666666667
+    ],
+    "fixed_model_average_correct_map_minus_randomized": 0.3537326388888889,
+    "fixed_model_average_correct_map_minus_randomized_95ci": [
+      0.28793402777777777,
+      0.4169270833333334
+    ]
+  }
+}

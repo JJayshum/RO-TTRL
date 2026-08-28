@@ -18,11 +18,17 @@ observed confidence intervals.
 | Mistral-7B-Instruct-v0.3 | OpenBookQA | 67.19% | 81.25% | +14.06 pp | [+4.69, +25.00] pp |
 | Mistral-7B-Instruct-v0.3 | MMLU | 64.06% | 71.88% | +7.81 pp | [-1.56, +17.19] pp |
 | **Mistral-7B pooled** | **three benchmarks** | **69.27%** | **78.65%** | **+9.38 pp** | **[+3.12, +15.62] pp** |
-| **Both models pooled** | **six model-benchmark cells** | **74.22%** | **80.21%** | **+5.99 pp** | **[+2.08, +10.16] pp** |
+| **Both models, fixed-model average** | **192 shared questions; 384 model-question observations** | **74.22%** | **80.21%** | **+5.99 pp** | **[+1.82, +10.16] pp** |
 
 Across the two models, OpenBookQA improved by +7.81 pp with a 95% CI of
 [+0.78, +14.84] pp. The pooled ARC-Challenge and MMLU estimates were positive
 but their individual intervals included zero.
+
+The two-model overall interval uses paired question resampling stratified by
+benchmark while treating models as fixed. The 192 question hashes are shared
+across the two models; the 384 model-question rows are repeated observations,
+not 384 independent questions. The earlier generic record-pooled analysis is
+retained as an audit artifact but is not the inferential source for this row.
 
 ## Interpretation
 
