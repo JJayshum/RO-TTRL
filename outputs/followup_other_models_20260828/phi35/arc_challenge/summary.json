@@ -1,0 +1,41 @@
+{
+  "model": "/root/autodl-tmp/cross-family-models/phi35",
+  "benchmark": "arc_challenge",
+  "orbits": 64,
+  "views": 4,
+  "samples_per_view": 4,
+  "root_accuracy": 0.875,
+  "unmapped_accuracy": 0.171875,
+  "mapped_accuracy": 0.921875,
+  "mapped_minus_root": 0.046875,
+  "mapped_minus_root_95ci": [
+    -0.015625,
+    0.109375
+  ],
+  "randomized_gauge_accuracy": 0.45859375,
+  "correct_map_minus_randomized": 0.46328125,
+  "correct_map_minus_randomized_95ci": [
+    0.37107421875,
+    0.553125
+  ],
+  "truth_support": 0.984375,
+  "canonical_rollout_accuracy": 0.82421875,
+  "parse_failure": 0.0,
+  "mapped_completion_tokens": 127107,
+  "root_completion_tokens": 126081,
+  "dataset": {
+    "path": "allenai/ai2_arc",
+    "config": "ARC-Challenge",
+    "split": "validation",
+    "fingerprint": "21330223521902f7",
+    "source_rows": 299,
+    "eligible_four_option_rows": 295,
+    "excluded_prior_rows": 64,
+    "available_after_exclusion": 231,
+    "transport": {
+      "kind": "modelscope_mirror_parquet",
+      "local_file": "/root/autodl-tmp/benchmark-data/ai2_arc/ARC-Challenge/validation-00000-of-00001.parquet",
+      "file_sha256": "395a5c88d1580d69855fbaee9450270578df1ad5af6259771cd0a42c20e99f05"
+    }
+  }
+}

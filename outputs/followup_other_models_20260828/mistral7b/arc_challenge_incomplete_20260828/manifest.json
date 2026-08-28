@@ -1,0 +1,356 @@
+{
+  "benchmark": "arc_challenge",
+  "sample_seed": 20260828,
+  "sample_offset": 0,
+  "generation_seed": 112808,
+  "dataset": {
+    "path": "allenai/ai2_arc",
+    "config": "ARC-Challenge",
+    "split": "validation",
+    "fingerprint": "21330223521902f7",
+    "source_rows": 299,
+    "eligible_four_option_rows": 295,
+    "excluded_prior_rows": 64,
+    "available_after_exclusion": 231,
+    "transport": {
+      "kind": "modelscope_mirror_parquet",
+      "local_file": "/root/autodl-tmp/benchmark-data/ai2_arc/ARC-Challenge/validation-00000-of-00001.parquet",
+      "file_sha256": "395a5c88d1580d69855fbaee9450270578df1ad5af6259771cd0a42c20e99f05"
+    }
+  },
+  "configuration": {
+    "model": "/root/autodl-tmp/cross-family-models/mistral7b",
+    "views": 4,
+    "samples_per_view": 4,
+    "max_new_tokens": 192,
+    "temperature": 0.8,
+    "top_p": 0.95,
+    "alpha": 1.0,
+    "gauge_seeds": 20
+  },
+  "exclusion_manifests": [
+    "outputs/cross_family_panel_20260817/mistral7b/arc_challenge/manifest.json"
+  ],
+  "items": [
+    {
+      "id": "arc_challenge:179",
+      "source_index": 179,
+      "content_sha256": "166b60f0e82db41630fd829c64d7e841f2edadcda0e36ef219bc9ad47c59e36f"
+    },
+    {
+      "id": "arc_challenge:295",
+      "source_index": 295,
+      "content_sha256": "5fd46f8b58d62b6357dc6ad57fc3df49d0a2a40f6a2fbaaa343c5bc3cfe2ace4"
+    },
+    {
+      "id": "arc_challenge:259",
+      "source_index": 259,
+      "content_sha256": "5ef59655b49dd82268094e2e15a672f17c12d47f7f6b89e651967035b6ba3a0b"
+    },
+    {
+      "id": "arc_challenge:108",
+      "source_index": 108,
+      "content_sha256": "652d980f26b216d16bb52626b5453f420d324cf6dc335b83f3d438ab4236f090"
+    },
+    {
+      "id": "arc_challenge:247",
+      "source_index": 247,
+      "content_sha256": "5333f04bf07703e1f2027408bd9455e976c798f0ad30913e0eaab74f2a587caa"
+    },
+    {
+      "id": "arc_challenge:120",
+      "source_index": 120,
+      "content_sha256": "18bb7889a06ee516a0f6e7dfebdf896a9c536663645cb899f71f0eb3000fb3ee"
+    },
+    {
+      "id": "arc_challenge:186",
+      "source_index": 186,
+      "content_sha256": "afb83779192b27b6405c19f00bbc26dad20d01237b1ca3984337b9ab74cc5821"
+    },
+    {
+      "id": "arc_challenge:62",
+      "source_index": 62,
+      "content_sha256": "31f088b1d2b6b9a5638f4a5ac976f364d57d5d35a294b057a251cd1f7686bad0"
+    },
+    {
+      "id": "arc_challenge:102",
+      "source_index": 102,
+      "content_sha256": "7418ac916f75a462e6e40b61665950042d43e90cf3baf90f699f7188f994d006"
+    },
+    {
+      "id": "arc_challenge:199",
+      "source_index": 199,
+      "content_sha256": "d559dfe584b9f5d0ed54c82deb482d59870778a8d992bc491c9e2c4b6863a68d"
+    },
+    {
+      "id": "arc_challenge:237",
+      "source_index": 237,
+      "content_sha256": "6b36e56c322deef4d09a9f2efeb8a374eb415e284d4a599457f7c28f62983ccd"
+    },
+    {
+      "id": "arc_challenge:234",
+      "source_index": 234,
+      "content_sha256": "341bec68d00fabe18c8f57e26edbd8b912a9b74053baaee3c4b387777f1a8b3d"
+    },
+    {
+      "id": "arc_challenge:246",
+      "source_index": 246,
+      "content_sha256": "a3581f2285c144da2dd1f8ab256d584bd2cbc49828c40e7b1f9a9aac2ac568a4"
+    },
+    {
+      "id": "arc_challenge:45",
+      "source_index": 45,
+      "content_sha256": "1ee70301df1c50e4884b13e5e29f67750d3766a1fdef20562179788562e2aaa7"
+    },
+    {
+      "id": "arc_challenge:216",
+      "source_index": 216,
+      "content_sha256": "12073a2fefd1ac04bd86ac8ba408ed604b1cf2b90576a2880ed89494d96cb434"
+    },
+    {
+      "id": "arc_challenge:133",
+      "source_index": 133,
+      "content_sha256": "11de524b83a0f5423143801ebfde77dc524ba3d2513bbfd228d0f4f5a3b26564"
+    },
+    {
+      "id": "arc_challenge:39",
+      "source_index": 39,
+      "content_sha256": "57205894dcd5e81430c8771ea480915051d2e2cdc707b096e37e28b9895e26f3"
+    },
+    {
+      "id": "arc_challenge:272",
+      "source_index": 272,
+      "content_sha256": "14f800b3f144e3b8d71330d6309526033ab99d43e7ac47989d5e1b6678fa4bd2"
+    },
+    {
+      "id": "arc_challenge:209",
+      "source_index": 209,
+      "content_sha256": "ddf18104fc584ef30c3870a0792c54571e71f1bbce9820ca8e9c7ee3e0310e2d"
+    },
+    {
+      "id": "arc_challenge:171",
+      "source_index": 171,
+      "content_sha256": "012bcb6c959fde55b2e47bf6c4b5b509fddfc7e32977db59c294f78cffdc39bc"
+    },
+    {
+      "id": "arc_challenge:187",
+      "source_index": 187,
+      "content_sha256": "f3e7bd058f2ee114d44c2e812712bdb6ab2e4fde855617e3ca4cb7cb09e194f1"
+    },
+    {
+      "id": "arc_challenge:93",
+      "source_index": 93,
+      "content_sha256": "d96a902adc1c6a7045d8943009bc2a8f7b99e960c357ab8b42010fe96c338f20"
+    },
+    {
+      "id": "arc_challenge:263",
+      "source_index": 263,
+      "content_sha256": "87451f3c277f600c95b88de30d0fbea332c7e83e9da61881cd8cecb855f6d7aa"
+    },
+    {
+      "id": "arc_challenge:228",
+      "source_index": 228,
+      "content_sha256": "bacd47d2285bbdc0a4f3c7d0052d5518269f35c4aa07330f5f93c99d2cad83d8"
+    },
+    {
+      "id": "arc_challenge:168",
+      "source_index": 168,
+      "content_sha256": "6ee13e8c0fbe8bb5bb9563685215bd568244040feefe14aba6aaa48530fe4970"
+    },
+    {
+      "id": "arc_challenge:128",
+      "source_index": 128,
+      "content_sha256": "b303eb15526dddcfc7de3f09db9722ea14d63510e5e4aa17024429ea0e0e1b66"
+    },
+    {
+      "id": "arc_challenge:92",
+      "source_index": 92,
+      "content_sha256": "5aa794a48426c2396d522e54570bc0e3e3068fd09f32aef32f6293912150377b"
+    },
+    {
+      "id": "arc_challenge:13",
+      "source_index": 13,
+      "content_sha256": "9073f403315b72cf7dd333165c0f45e5c257a51a4b67ae54009079e661e3da35"
+    },
+    {
+      "id": "arc_challenge:271",
+      "source_index": 271,
+      "content_sha256": "8b17cd903c7a3b0a08a107a2c82cf2bf6c4a91fe0bc58568f190fd3f570ea27e"
+    },
+    {
+      "id": "arc_challenge:188",
+      "source_index": 188,
+      "content_sha256": "8707f2cd5058c21738972967890f5dd5222374fda46c794c60d9af91a2a41f9d"
+    },
+    {
+      "id": "arc_challenge:165",
+      "source_index": 165,
+      "content_sha256": "aef4547acc3ee90f18471e86dd7cb85dee860cfd87ff604268c7a68c93eff875"
+    },
+    {
+      "id": "arc_challenge:19",
+      "source_index": 19,
+      "content_sha256": "8ea825401a483ebbe048239738a1020ea9614a8dde09bfc3dfa6f85473df4b1f"
+    },
+    {
+      "id": "arc_challenge:57",
+      "source_index": 57,
+      "content_sha256": "1e0433599d1efb16d351803689ef7a72d447bf19cd9a7ccea9d9d097a6d7b0f0"
+    },
+    {
+      "id": "arc_challenge:121",
+      "source_index": 121,
+      "content_sha256": "3ff0e13aac8505280e1b00086485b2333daf0d4f99065dc3fd6cfbe77bf4dc20"
+    },
+    {
+      "id": "arc_challenge:98",
+      "source_index": 98,
+      "content_sha256": "37fdb75ba55280de77d58af98e5ef684be90b689886c7b8b76ab44297d41bf4a"
+    },
+    {
+      "id": "arc_challenge:192",
+      "source_index": 192,
+      "content_sha256": "07f09a9cea75c25b7a1f72069a7229551f41ee27809323e45fdec54e24feebd8"
+    },
+    {
+      "id": "arc_challenge:74",
+      "source_index": 74,
+      "content_sha256": "2f5b6280b5eeb784ae8532a4182d20f61c5120e777013c70c83f65beff2ca73d"
+    },
+    {
+      "id": "arc_challenge:205",
+      "source_index": 205,
+      "content_sha256": "7f5c1d454ed00a8b2978464741770064a0f51547cc845993bfeddc0b780b1018"
+    },
+    {
+      "id": "arc_challenge:129",
+      "source_index": 129,
+      "content_sha256": "b8266eb30815a3a65d53d8f39dca596aed77fab462b237839f6d495a0fdde20e"
+    },
+    {
+      "id": "arc_challenge:219",
+      "source_index": 219,
+      "content_sha256": "5addffc229f9d879b6da3a189c9a2a51129e78cf07bf394b1764afe7f376fe49"
+    },
+    {
+      "id": "arc_challenge:222",
+      "source_index": 222,
+      "content_sha256": "eb24a2c9bd70e202b76f9be5648104dcc35f4686fb907bd7b895608a8189e335"
+    },
+    {
+      "id": "arc_challenge:84",
+      "source_index": 84,
+      "content_sha256": "12149a5bc33204d8ae0f20e75f40cf9e2fdb23cfd230be70520c83495eb8cd73"
+    },
+    {
+      "id": "arc_challenge:153",
+      "source_index": 153,
+      "content_sha256": "af950c487590bd968bafd4ebbfd55c750eeaecaff37924293729eacf9e79c78f"
+    },
+    {
+      "id": "arc_challenge:230",
+      "source_index": 230,
+      "content_sha256": "db8b2cda1d2c64b4948116414aca195faaf0d6d5d57918fae70592baef763efe"
+    },
+    {
+      "id": "arc_challenge:145",
+      "source_index": 145,
+      "content_sha256": "6dd10d3e81ff749e66432c791c17f9bc51110166fc6eaa392f28643dcb221da0"
+    },
+    {
+      "id": "arc_challenge:249",
+      "source_index": 249,
+      "content_sha256": "8ef0af916451a79df47c3a08030cc8e0383b644d21694277bd1fcc3de36ad995"
+    },
+    {
+      "id": "arc_challenge:52",
+      "source_index": 52,
+      "content_sha256": "5a25151f9ab709256d9e07d7ef9a7c80c4085df2a6d2032e1389ae2149eeff5c"
+    },
+    {
+      "id": "arc_challenge:0",
+      "source_index": 0,
+      "content_sha256": "a466d9691499876bfe181dfd2f28cbcd4c55ebda03d309d8ac276ed7bd98cd87"
+    },
+    {
+      "id": "arc_challenge:51",
+      "source_index": 51,
+      "content_sha256": "cc01591b99beb1be075481755ec8106997718f8f252aa3c8757d090931279819"
+    },
+    {
+      "id": "arc_challenge:227",
+      "source_index": 227,
+      "content_sha256": "ebda8b0daf9eea0a1a20cfbb6b3ed54f7e495f36157a606e481f5195732106ed"
+    },
+    {
+      "id": "arc_challenge:211",
+      "source_index": 211,
+      "content_sha256": "ee7892a085e1695b3793a2ae320983f5810b4fb71f106029535a9c861aabcabf"
+    },
+    {
+      "id": "arc_challenge:262",
+      "source_index": 262,
+      "content_sha256": "8366031a235125cacfbbbc30915fc779b1d1f5e832771dfd745271130bd7b180"
+    },
+    {
+      "id": "arc_challenge:266",
+      "source_index": 266,
+      "content_sha256": "d8dae6a3ed9ca6170b6260d70873f0e26ef8c5e9dffdc642932d92ddb11f274c"
+    },
+    {
+      "id": "arc_challenge:66",
+      "source_index": 66,
+      "content_sha256": "63bcb684c831768c813d3d1e2c95830e0b5c6880cf8733d01989dd309042c813"
+    },
+    {
+      "id": "arc_challenge:252",
+      "source_index": 252,
+      "content_sha256": "d0cca6e1ad4349e15f8db9c56c7a1e0e4bfd7a6d55412250e5b24e7ddca858a5"
+    },
+    {
+      "id": "arc_challenge:183",
+      "source_index": 183,
+      "content_sha256": "c5e603c79d40f93d3cce41dbacb7f7a92f963bbb915c011fa973937b3d040799"
+    },
+    {
+      "id": "arc_challenge:5",
+      "source_index": 5,
+      "content_sha256": "edb1763ef0602cf5ff9810faca24c612420caf30b5af2a9f8f74ad33ce82e50a"
+    },
+    {
+      "id": "arc_challenge:6",
+      "source_index": 6,
+      "content_sha256": "f65fab416e12eafa11467852a7481ee62d770eb2afa4371a85b03c46e709677b"
+    },
+    {
+      "id": "arc_challenge:185",
+      "source_index": 185,
+      "content_sha256": "48414c762dc587ecc9a9f5ad1c1862183afe11460b11b04f75e2da779381f867"
+    },
+    {
+      "id": "arc_challenge:152",
+      "source_index": 152,
+      "content_sha256": "30e92d52a9c4e27fcd6ecd6b59b4d53a9578a8a689c41b64c7ee07789205196a"
+    },
+    {
+      "id": "arc_challenge:257",
+      "source_index": 257,
+      "content_sha256": "8c4d354e83d2e7b7a6aa1e9809a810f46829c8acd7688252918b6b99bb79247f"
+    },
+    {
+      "id": "arc_challenge:111",
+      "source_index": 111,
+      "content_sha256": "7f65b6ee589fa7818b7d4ebfb5f198bdf68a0abfca984f0ed43dd2020719fbb9"
+    },
+    {
+      "id": "arc_challenge:253",
+      "source_index": 253,
+      "content_sha256": "610a8b5c2d0455aeea6c71a315ff05074e0c4fa0fdcff1dc422623566f83fac8"
+    },
+    {
+      "id": "arc_challenge:59",
+      "source_index": 59,
+      "content_sha256": "f06df1f274cd848569882168a2697d001e40d7a73e9f272df96e17133ef5b2bd"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "model": "/root/autodl-tmp/cross-family-models/mistral7b",
+  "benchmark": "openbookqa",
+  "orbits": 64,
+  "views": 4,
+  "samples_per_view": 4,
+  "root_accuracy": 0.671875,
+  "unmapped_accuracy": 0.296875,
+  "mapped_accuracy": 0.8125,
+  "mapped_minus_root": 0.140625,
+  "mapped_minus_root_95ci": [
+    0.046875,
+    0.25
+  ],
+  "randomized_gauge_accuracy": 0.425,
+  "correct_map_minus_randomized": 0.3875,
+  "correct_map_minus_randomized_95ci": [
+    0.27888671875000004,
+    0.49375
+  ],
+  "truth_support": 0.96875,
+  "canonical_rollout_accuracy": 0.6748046875,
+  "parse_failure": 0.0009765625,
+  "mapped_completion_tokens": 99929,
+  "root_completion_tokens": 99043,
+  "dataset": {
+    "path": "allenai/openbookqa",
+    "config": "main",
+    "split": "validation",
+    "fingerprint": "a2f742e2a87392eb",
+    "source_rows": 500,
+    "eligible_four_option_rows": 500,
+    "excluded_prior_rows": 64,
+    "available_after_exclusion": 436,
+    "transport": {
+      "kind": "modelscope_mirror_parquet",
+      "local_file": "/root/autodl-tmp/benchmark-data/openbookqa/main/validation-00000-of-00001.parquet",
+      "file_sha256": "35370b9cfee8c1ff325ccc74adc434d12c47ca0ac3244aa87f3fa77069285206"
+    }
+  }
+}
