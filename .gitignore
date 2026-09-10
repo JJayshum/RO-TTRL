@@ -27,6 +27,11 @@ venv/
 
 # LaTeX intermediate build products
 paper/build/
+.figure-build/
+paper/icassp2027/build/main.pdf
+paper/icassp2027/figures/editable/
+paper/icassp2027/figures/drawio/*.png
+paper/icassp2027/figures/drawio/*.svg
 *.aux
 *.bbl
 *.blg

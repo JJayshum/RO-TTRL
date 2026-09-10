@@ -1,5 +1,6 @@
 \documentclass{article}
 \usepackage{spconf,amsmath,amssymb,graphicx,booktabs,array,hyperref}
+\hypersetup{hidelinks}
 
 \title{CANONICALIZING OPTION-PERMUTED VIEWS IMPROVES MATCHED-COMPUTE MULTIPLE-CHOICE INFERENCE}
 \twoauthors
@@ -7,7 +8,7 @@
   {School of Mathematics\\
    Hunan University, China\\
    eugeneshen2005@gmail.com}
-  {Haowen Chen\sthanks{Corresponding author: Haowen Chen (hwchen@hnu.edu.cn). Funding and compliance statement to be added before submission.}}
+  {Haowen Chen\sthanks{Corresponding author: Haowen Chen (hwchen@hnu.edu.cn).}}
   {College of Computer Science and Electronic Engineering\\
    Hunan University, China\\
    hwchen@hnu.edu.cn}
@@ -35,7 +36,7 @@ Figure~\ref{fig:ro_pipeline} summarizes the complete inference path and the matc
 
 \begin{figure*}[t]
 \centering
-\includegraphics[width=0.96\textwidth]{figures/ro_pipeline.jpg}
+\includegraphics[width=0.96\textwidth]{figures/drawio/ro_pipeline.pdf}
 \caption{Relational-Orbit inference pipeline. The canonical question is rendered in an identity view and three cyclic option permutations. A frozen language model produces four samples per view; valid labels are parsed, mapped back through the exact inverse permutation, and combined with a smoothed canonical log-opinion pool. The Root baseline spends all 16 generations on the identity view, whereas the randomized-map control preserves the same prompts and generations but destroys the known correspondence. The final prediction is the maximum of the canonical pooled distribution.}
 \label{fig:ro_pipeline}
 \end{figure*}
@@ -211,7 +212,7 @@ RO inference makes a known option-space relation explicit before self-consistenc
 
 The evidence also specifies where RO should not be used. Shared panels had positive fixed-model averages but heterogeneous effects; Qwen2.5-7B was near a high Root ceiling, Llama was slightly negative on one panel, and Gemma was negative on new MMLU. More samples helped Qwen3B and Mistral but not every model. Harder arithmetic, Boolean controls and affine transformations show that a known transformation is not automatically beneficial. Mapped TTRL was positive on easy synthetic data across five seeds, whereas its real-benchmark gain was only +2.08 points and remains exploratory.
 
-RO should be treated as a validated inference wrapper, not a universal replacement for self-consistency. Reports should state the generation budget, preserve question-level pairing, retain parser failures, include randomized-map controls and compare permutation-aware baselines. The repository archives protocols, manifests, raw records and full-precision analyses; remote and local suites reported 25 and 30 passing tests. Future work should test larger option spaces, non-cyclic transformations and unified matched-compute baselines.
+RO should be treated as a validated inference wrapper, not a universal replacement for self-consistency. Reports should state the generation budget, preserve question-level pairing, retain parser failures, include randomized-map controls and compare permutation-aware baselines. Protocols, manifests, raw records and full-precision analyses are available at \href{https://github.com/JJayshum/RO-TTRL}{github.com/JJayshum/RO-TTRL}. Future work should test larger option spaces, non-cyclic transformations and unified matched-compute baselines.
 
 \clearpage
 \makeatletter
