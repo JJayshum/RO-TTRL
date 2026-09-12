@@ -3,21 +3,20 @@
 \hypersetup{hidelinks}
 
 \title{CANONICALIZING OPTION-PERMUTED VIEWS IMPROVES MATCHED-COMPUTE MULTIPLE-CHOICE INFERENCE}
-\twoauthors
-  {Yujie Shen}
-  {School of Mathematics\\
-   Hunan University, China\\
-   eugeneshen2005@gmail.com\\
-   \href{https://orcid.org/0009-0009-0447-9913}{ORCID: 0009-0009-0447-9913}}
-  {Haowen Chen\sthanks{Corresponding author: Haowen Chen (hwchen@hnu.edu.cn).}}
-  {College of Computer Science and Electronic Engineering\\
-   Hunan University, China\\
-   hwchen@hnu.edu.cn\\
-   \href{https://orcid.org/0000-0002-4777-7525}{ORCID: 0000-0002-4777-7525}}
+\name{Yujie Shen$^{1}$, Haowen Chen$^{2}$\thanks{Corresponding author: Haowen Chen (hwchen@hnu.edu.cn).}, Yupeng Hu$^{2}$, Yuan Lei$^{1}$, Lu Fang$^{3}$}
+\address{\scriptsize $^{1}$School of Mathematics, Hunan University, Changsha, 410082, China\\[-2pt]
+Yujie Shen: eugeneshen2005@gmail.com, \href{https://orcid.org/0009-0009-0447-9913}{ORCID: 0009-0009-0447-9913}\\[-2pt]
+Yuan Lei: yleimath@hnu.edu.cn, \href{https://orcid.org/0000-0002-0413-5848}{ORCID: 0000-0002-0413-5848}\\[-2pt]
+$^{2}$College of Computer Science and Electronic Engineering, Hunan University, Changsha, 410082, China\\[-2pt]
+Haowen Chen: hwchen@hnu.edu.cn, \href{https://orcid.org/0000-0002-4777-7525}{ORCID: 0000-0002-4777-7525}\\[-2pt]
+Yupeng Hu: yphu@hnu.edu.cn, \href{https://orcid.org/0000-0002-7358-7426}{ORCID: 0000-0002-7358-7426}\\[-2pt]
+$^{3}$Modern Engineering Training Center, Hunan University, Changsha, 410082, China\\[-2pt]
+Lu Fang: fanglu@hnu.edu.cn, \href{https://orcid.org/0009-0004-6546-9720}{ORCID: 0009-0004-6546-9720}}
 
 \begin{document}
 \ninept
 \maketitle
+\vspace{-1.5em}
 
 \begin{abstract}
 Large language models can change their emitted answer label when the options of an otherwise identical multiple-choice question are reordered. We study Relational-Orbit inference, a parameter-free wrapper that applies the known inverse option permutation before aggregating a fixed generation budget. On the first Qwen2.5-3B public-benchmark block, mapped inference improved accuracy by 17.71 percentage points over matched-compute root inference. Two independent follow-up blocks retained a 7.29-point gain over 384 questions. On a new Mistral-7B block, the gain was 9.38 points. Shared-question panels across Qwen, Llama, Phi, Mistral and Gemma showed positive fixed-model averages, while Qwen2.5-7B ceiling effects, a negative Gemma-MMLU result, harder synthetic arithmetic and affine transformations exposed clear limits. Correct maps consistently outperformed randomized maps. The method is useful for validated four-option settings, but does not provide universal model or transformation improvements.
